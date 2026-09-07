@@ -12,6 +12,7 @@ css/style.css     styles
 js/app.js         catalogue produits + panier
 img/              photos, logo, visuels produits (img/p/)
 serve.ps1         petit serveur local pour la prévisualisation
+sources/          photos, captures et maquette d'origine (non servies par le site)
 ```
 
 ## Lancer en local
