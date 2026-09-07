@@ -24,6 +24,7 @@
       </span>
     </a>
     <nav class="main-nav">
+      <a href="#nouveaute" class="nav-link nav-link--new">Nouveau</a>
       <a href="#menu" class="nav-link">Menu</a>
       <a href="#commander" class="nav-link">Commander</a>
       <a href="#histoire" class="nav-link">Notre histoire</a>
@@ -43,7 +44,7 @@
 <section id="top" class="hero">
   <div class="wrap hero-inner">
     <div class="hero-copy">
-      <span class="pill"><span class="pill-dot"></span> Bubble tea · smoothies · fast-food</span>
+      <a href="#nouveaute" class="pill pill--link"><span class="pill-dot"></span> <b>Nouveau</b> · les glaces pilées sont arrivées</a>
       <h1 class="hero-title">Le thé, mais avec<br /><span class="gradient">du caractère.</span></h1>
       <p class="hero-desc">Le thé est infusé le matin, jamais dilué. Les perles sortent de la casserole toutes les deux heures. Les fruits sont coupés devant vous. Chaud ou glacé, 500&nbsp;ml ou 700&nbsp;ml — le sucre, c'est vous qui décidez.</p>
       <div class="hero-actions">
@@ -52,7 +53,7 @@
       </div>
       <div class="hero-stats">
         <div class="stat">
-          <div class="stat-num" id="stat-item-count">21</div>
+          <div class="stat-num" id="stat-item-count">27</div>
           <div class="stat-label">articles à la carte</div>
         </div>
         <div class="stat">
@@ -60,8 +61,8 @@
           <div class="stat-label">le thé au lait 500 ml</div>
         </div>
         <div class="stat">
-          <div class="stat-num">2</div>
-          <div class="stat-label">boutiques en ville</div>
+          <div class="stat-num">5</div>
+          <div class="stat-label">salons au Bénin</div>
         </div>
       </div>
     </div>
@@ -74,26 +75,41 @@
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <div class="marquee-group">
-      <span>Thé infusé le matin</span><span>✳</span>
-      <span>Perles cuites sur place</span><span>✳</span>
-      <span>Fruits mixés à la commande</span><span>✳</span>
-      <span>Chaud ou glacé</span><span>✳</span>
-      <span>Ajout dès 200 FCFA</span><span>✳</span>
-      <span>Livraison 1000 FCFA</span><span>✳</span>
-    </div>
-    <div class="marquee-group">
-      <span>Thé infusé le matin</span><span>✳</span>
-      <span>Perles cuites sur place</span><span>✳</span>
-      <span>Fruits mixés à la commande</span><span>✳</span>
-      <span>Chaud ou glacé</span><span>✳</span>
-      <span>Ajout dès 200 FCFA</span><span>✳</span>
-      <span>Livraison 1000 FCFA</span><span>✳</span>
+<section id="nouveaute" class="section section--dark drop">
+  <div class="wrap">
+    <div class="drop-head reveal">
+      <div class="min0">
+        <span class="tag-new">Nouveau à la carte</span>
+        <h2 class="h2 drop-title">Les glaces pilées<br /><span class="accent">sont arrivées.</span></h2>
+        <p class="lead lead--dark drop-lead">Glace pilée montée à la commande, nappée devant vous, servie en grand format. Trois parfums pour commencer — disponibles dans les cinq salons.</p>
+        <a href="#menu" class="btn drop-cta">Les commander</a>
+      </div>
+      <div class="drop-grid">
+        <a href="#menu" class="drop-card reveal" data-delay="1">
+          <img src="img/p/glace-simple.jpg" alt="Glace pilée simple au caramel" loading="lazy" />
+          <span class="drop-card-foot">
+            <span class="drop-card-name">Simple</span>
+            <span class="drop-card-price">2 000 F</span>
+          </span>
+        </a>
+        <a href="#menu" class="drop-card reveal" data-delay="2">
+          <img src="img/p/glace-menthe.jpg" alt="Glace pilée à la menthe" loading="lazy" />
+          <span class="drop-card-foot">
+            <span class="drop-card-name">Menthe</span>
+            <span class="drop-card-price">2 200 F</span>
+          </span>
+        </a>
+        <a href="#menu" class="drop-card reveal" data-delay="3">
+          <img src="img/p/glace-chocolat.jpg" alt="Glace pilée au chocolat" loading="lazy" />
+          <span class="drop-card-foot">
+            <span class="drop-card-name">Chocolat</span>
+            <span class="drop-card-price">2 500 F</span>
+          </span>
+        </a>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <section id="menu" class="section">
   <div class="wrap">
@@ -144,14 +160,14 @@
   </div>
 </section>
 
-<section id="commander" class="section section--tint">
+<section id="commander" class="section section--lime">
   <div class="wrap order-inner">
     <div class="min0 reveal">
       <span class="eyebrow">Retrait ou livraison</span>
       <h2 class="h2" style="margin-top:12px">Vous passez, ou on vient.</h2>
       <p class="lead" style="margin-top:18px">Composez votre commande ici, puis choisissez : vous la récupérez au comptoir, ou un livreur vous l'apporte. Dans les deux cas, tout se règle en trois écrans.</p>
       <div class="order-actions">
-        <button type="button" id="btn-delivery-cta" class="btn">Me faire livrer</button>
+        <button type="button" id="btn-delivery-cta" class="btn btn--dark">Me faire livrer</button>
         <button type="button" id="btn-pickup-cta" class="btn btn--ghost-dark">Retirer en boutique</button>
       </div>
     </div>
@@ -208,10 +224,12 @@
       <p class="lead">Des photos prises en boutique, pas en studio. C'est exactement ce que vous recevez.</p>
     </div>
     <div class="gallery-grid reveal">
+      <figure><img src="img/g-glace-1.jpg" alt="Cliente avec une glace pilée au chocolat" loading="lazy" /></figure>
       <figure><img src="img/g-portrait.jpg" alt="Cliente avec un thé au lait aux mélanges" loading="lazy" /></figure>
       <figure><img src="img/p/lait-menthe.jpg" alt="Thé vert au lait à la menthe" loading="lazy" /></figure>
-      <figure><img src="img/p/smoothie-mangue.jpg" alt="Smoothie à la mangue" loading="lazy" /></figure>
+      <figure><img src="img/g-glace-2.jpg" alt="Cliente avec une glace pilée à la menthe" loading="lazy" /></figure>
       <figure><img src="img/g-portrait-2.jpg" alt="Cliente avec un thé vert au lait" loading="lazy" /></figure>
+      <figure><img src="img/p/smoothie-mangue.jpg" alt="Smoothie à la mangue" loading="lazy" /></figure>
       <figure><img src="img/p/frites-portion.jpg" alt="Portion de frites Super Thé" loading="lazy" /></figure>
       <figure><img src="img/p/vert-cocktail-3.jpg" alt="Thés verts aux fruits alignés sur le comptoir" loading="lazy" /></figure>
     </div>
@@ -225,25 +243,41 @@
         <span class="eyebrow eyebrow--light">Nos boutiques</span>
         <h2 class="h2">Où nous trouver</h2>
       </div>
-      <p class="lead lead--dark">Deux adresses en ville. On y prépare tout sur place, du thé aux frites.</p>
+      <p class="lead lead--dark">Cinq salons, tous approvisionnés en glaces pilées. On y prépare tout sur place, du thé aux frites.</p>
     </div>
     <div class="shops-grid">
       <div class="shop-card reveal">
-        <h3 class="shop-name">Boutique principale</h3>
-        <p class="shop-line">Carrefour du marché, quartier central</p>
-        <p class="shop-line">Lun–Sam 9 h – 22 h · Dim 13 h – 21 h</p>
-        <a href="tel:+2290155995757" class="shop-phone">(+229) 01 55 99 57 57</a><br />
+        <h3 class="shop-name">Cotonou</h3>
+        <p class="shop-line">Salon Super Thé</p>
         <span class="shop-tag">Retrait &amp; livraison</span>
       </div>
       <div class="shop-card reveal" data-delay="1">
-        <h3 class="shop-name">Annexe</h3>
-        <p class="shop-line">Avenue commerçante, face à la station</p>
-        <p class="shop-line">Tous les jours 10 h – 21 h</p>
-        <a href="tel:+2290192119292" class="shop-phone">(+229) 01 92 11 92 92</a><br />
-        <span class="shop-tag">Retrait sur place</span>
+        <h3 class="shop-name">Vodjè</h3>
+        <p class="shop-line">Salon Super Thé</p>
+        <span class="shop-tag">Retrait &amp; livraison</span>
+      </div>
+      <div class="shop-card reveal" data-delay="2">
+        <h3 class="shop-name">Abomey-Calavi</h3>
+        <p class="shop-line">Salon Super Thé</p>
+        <span class="shop-tag">Retrait &amp; livraison</span>
+      </div>
+      <div class="shop-card reveal" data-delay="1">
+        <h3 class="shop-name">Calavi</h3>
+        <p class="shop-line">Salon Super Thé</p>
+        <span class="shop-tag">Retrait &amp; livraison</span>
+      </div>
+      <div class="shop-card reveal" data-delay="2">
+        <h3 class="shop-name">Porto-Novo</h3>
+        <p class="shop-line">Salon Super Thé</p>
+        <span class="shop-tag">Retrait &amp; livraison</span>
+      </div>
+      <div class="shop-card shop-card--call reveal" data-delay="3">
+        <h3 class="shop-name">Nous joindre</h3>
+        <a href="tel:+2290155995757" class="shop-phone">(+229) 01 55 99 57 57</a>
+        <a href="tel:+2290192119292" class="shop-phone">(+229) 01 92 11 92 92</a>
       </div>
     </div>
-    <p class="note note--dark">[ adresses et horaires provisoires — numéros repris du menu ]</p>
+    <p class="note note--dark">[ adresses précises et horaires par salon : à compléter ]</p>
   </div>
 </section>
 

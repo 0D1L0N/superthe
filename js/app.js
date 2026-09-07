@@ -16,6 +16,15 @@
 
   var CATS = [
     {
+      key: "Glaces pilées",
+      note: "La dernière arrivée à la carte. Glace pilée montée à la commande, servie en grand format, dans tous les salons.",
+      items: [
+        { name: "Glace pilée simple", m: 2000, badge: "Nouveau", photo: "img/p/glace-simple.jpg", desc: "Glace pilée nappée de caramel, avec des éclats de biscuit répartis dans toute la hauteur du gobelet." },
+        { name: "Glace pilée à la menthe", m: 2200, badge: "Nouveau", photo: "img/p/glace-menthe.jpg", desc: "Menthe et éclats de biscuit noir sur glace pilée. La plus fraîche des trois, et la plus verte." },
+        { name: "Glace pilée au chocolat", m: 2500, badge: "Nouveau", photo: "img/p/glace-chocolat.jpg", desc: "Un nappage chocolat qui coule le long du gobelet, des éclats de biscuit dedans. La plus gourmande." }
+      ]
+    },
+    {
       key: "Thé au lait",
       note: "Thé noir infusé le matin, lait entier, sucre à votre main. 500 ml ou 700 ml, chaud ou glacé.",
       items: [
@@ -175,7 +184,8 @@
       card.innerHTML =
         '<span class="item-media">' +
           '<img class="item-photo" src="' + item.photo + '" alt="" loading="lazy" />' +
-          '<span class="item-badge">' + escapeHtml(item.badge) + "</span>" +
+          '<span class="item-badge' + (item.badge === "Nouveau" ? " item-badge--new" : "") + '">' +
+            escapeHtml(item.badge) + "</span>" +
           '<span class="item-price">' + priceLabel(item) + "</span>" +
         "</span>" +
         '<span class="item-body">' +
@@ -223,6 +233,7 @@
     ui["detail-photo"].src = d.photo;
     ui["detail-photo"].alt = d.name;
     ui["detail-badge"].textContent = d.badge;
+    ui["detail-badge"].className = "detail-badge" + (d.badge === "Nouveau" ? " item-badge--new" : "");
     ui["detail-cat"].textContent = state.detailCat;
     ui["detail-price-from"].textContent = "dès " + F(d.m);
     ui["detail-name"].textContent = d.name;

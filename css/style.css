@@ -6,35 +6,35 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 :root {
-  /* Fonds sombres */
-  --ink:        #080b06;
-  --surface:    #10160c;
-  --surface-2:  #1a2411;
-  --surface-3:  #24310f;
+  /* Fonds sombres — verts profonds, jamais neutres */
+  --ink:        #0b1704;
+  --surface:    #16290a;
+  --surface-2:  #1f3a0d;
+  --surface-3:  #2b4f11;
 
-  /* Fonds clairs */
-  --paper:      #fcfaf4;
-  --paper-2:    #f2eee1;
-  --paper-3:    #e8e3d1;
+  /* Fonds clairs — tous teintés lime */
+  --paper:      #f3fbe3;
+  --paper-2:    #e6f6c4;
+  --paper-3:    #d6ed9f;
 
   /* Marque */
   --lime:       #9ee817;
-  --lime-hi:    #cbff57;
-  --lime-deep:  #35600a;
+  --lime-hi:    #c9ff5a;
+  --lime-deep:  #3d7008;
   --amber:      #ffb545;
   --clay:       #e2703a;
 
   /* Texte */
-  --on-dark:        #f6f8f1;
-  --on-dark-muted:  rgba(246, 248, 241, 0.66);
-  --on-dark-faint:  rgba(246, 248, 241, 0.40);
-  --on-light:       #0f1409;
-  --on-light-muted: rgba(15, 20, 9, 0.64);
-  --on-light-faint: rgba(15, 20, 9, 0.42);
+  --on-dark:        #f4fbe6;
+  --on-dark-muted:  rgba(244, 251, 230, 0.70);
+  --on-dark-faint:  rgba(244, 251, 230, 0.44);
+  --on-light:       #101a06;
+  --on-light-muted: rgba(16, 26, 6, 0.66);
+  --on-light-faint: rgba(16, 26, 6, 0.44);
 
   /* Traits */
-  --line-dark:  rgba(246, 248, 241, 0.12);
-  --line-light: rgba(15, 20, 9, 0.12);
+  --line-dark:  rgba(158, 232, 23, 0.20);
+  --line-light: rgba(16, 26, 6, 0.13);
 
   /* Rayons */
   --r-sm: 12px;
@@ -43,11 +43,11 @@
   --r-xl: 34px;
 
   /* Ombres */
-  --shadow-sm: 0 2px 8px rgba(8, 11, 6, 0.06);
-  --shadow-md: 0 14px 34px rgba(8, 11, 6, 0.10);
-  --shadow-lg: 0 30px 70px rgba(8, 11, 6, 0.22);
-  --shadow-dark: 0 34px 80px rgba(0, 0, 0, 0.55);
-  --glow: 0 0 0 1px rgba(158, 232, 23, 0.35), 0 12px 40px rgba(158, 232, 23, 0.18);
+  --shadow-sm: 0 2px 8px rgba(11, 23, 4, 0.07);
+  --shadow-md: 0 14px 34px rgba(11, 23, 4, 0.12);
+  --shadow-lg: 0 30px 70px rgba(11, 23, 4, 0.24);
+  --shadow-dark: 0 34px 80px rgba(3, 8, 1, 0.55);
+  --glow: 0 0 0 1px rgba(158, 232, 23, 0.45), 0 12px 44px rgba(158, 232, 23, 0.28);
 
   /* Typo */
   --display: "Bricolage Grotesque", "Baloo 2", system-ui, sans-serif;
@@ -229,16 +229,23 @@ button { font: inherit; color: inherit; }
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(252, 250, 244, 0.82);
+  background: rgba(243, 251, 227, 0.86);
   backdrop-filter: saturate(180%) blur(16px);
   -webkit-backdrop-filter: saturate(180%) blur(16px);
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .site-header.is-stuck {
-  border-bottom-color: var(--line-light);
-  box-shadow: 0 8px 30px rgba(8, 11, 6, 0.06);
+  border-bottom-color: var(--lime);
+  box-shadow: 0 8px 30px rgba(11, 23, 4, 0.07);
 }
+
+.nav-link--new {
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 700;
+}
+.nav-link--new:hover { background: var(--ink); color: var(--lime); }
 
 .header-inner {
   display: flex;
@@ -339,7 +346,7 @@ button { font: inherit; color: inherit; }
   inset: -30% -10% auto -10%;
   height: 90%;
   background:
-    radial-gradient(60% 60% at 22% 25%, rgba(158, 232, 23, 0.22), transparent 68%),
+    radial-gradient(62% 62% at 22% 25%, rgba(158, 232, 23, 0.34), transparent 68%),
     radial-gradient(50% 50% at 82% 12%, rgba(255, 181, 69, 0.14), transparent 70%);
   pointer-events: none;
   z-index: -1;
@@ -502,41 +509,6 @@ button { font: inherit; color: inherit; }
 .hero-tag--2 { right: 2%; top: 10%; background: var(--lime); animation: floaty 6s ease-in-out infinite 2s; }
 
 /* --------------------------------------------------------------------------
-   Bandeau défilant
-   -------------------------------------------------------------------------- */
-
-.marquee {
-  background: var(--lime);
-  color: var(--ink);
-  padding: 15px 0;
-  overflow: hidden;
-  border-top: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
-}
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: slide 34s linear infinite;
-}
-.marquee:hover .marquee-track { animation-play-state: paused; }
-.marquee-group {
-  display: flex;
-  align-items: center;
-  gap: 34px;
-  padding-right: 34px;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.0625rem;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-.marquee-group span:nth-child(even) { color: rgba(8, 11, 6, 0.4); }
-@keyframes slide {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* --------------------------------------------------------------------------
    Sections génériques
    -------------------------------------------------------------------------- */
 
@@ -546,6 +518,37 @@ button { font: inherit; color: inherit; }
   color: var(--on-dark);
 }
 .section--tint { background: var(--paper-2); }
+
+/* Grand aplat lime : c'est lui qui porte la couleur de marque sur la page. */
+.section--lime {
+  position: relative;
+  background: var(--lime);
+  color: var(--ink);
+  overflow: hidden;
+  isolation: isolate;
+}
+.section--lime::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(11, 23, 4, 0.16) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(70% 70% at 80% 20%, black, transparent 75%);
+  -webkit-mask-image: radial-gradient(70% 70% at 80% 20%, black, transparent 75%);
+  pointer-events: none;
+  z-index: -1;
+}
+.section--lime .eyebrow { color: var(--ink); }
+.section--lime .eyebrow::before { background: var(--ink); }
+.section--lime .lead { color: rgba(11, 23, 4, 0.74); }
+.section--lime .step {
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px rgba(11, 23, 4, 0.14);
+}
+.section--lime .step:hover {
+  box-shadow: inset 0 0 0 1px var(--ink), 0 12px 28px rgba(11, 23, 4, 0.16);
+}
+.section--lime .step-num { background: var(--ink); color: var(--lime); }
 
 /* --------------------------------------------------------------------------
    Menu
@@ -572,9 +575,9 @@ button { font: inherit; color: inherit; }
 }
 .cat-btn:hover { color: var(--on-light); box-shadow: inset 0 0 0 1.5px var(--on-light); }
 .cat-btn.is-active {
-  background: var(--ink);
-  color: var(--lime);
-  box-shadow: inset 0 0 0 1.5px var(--ink);
+  background: var(--lime);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--lime), 0 6px 18px rgba(158, 232, 23, 0.35);
 }
 
 .cat-note {
@@ -1156,13 +1159,13 @@ button { font: inherit; color: inherit; }
 }
 .size-btn:hover { box-shadow: inset 0 0 0 1.5px var(--on-light-faint); }
 .size-btn.is-active {
-  background: var(--ink);
-  color: var(--on-dark);
-  box-shadow: inset 0 0 0 1.5px var(--ink);
+  background: var(--lime);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--lime);
 }
 .size-btn b { display: block; font-family: var(--display); font-size: 1rem; font-weight: 700; }
 .size-btn span { font-size: 0.8125rem; color: var(--on-light-faint); }
-.size-btn.is-active span { color: var(--lime); }
+.size-btn.is-active span { color: rgba(11, 23, 4, 0.66); }
 
 /* Déclencheur + petite fenêtre des ajouts */
 .extras-trigger {
@@ -1334,7 +1337,7 @@ button { font: inherit; color: inherit; }
   cursor: pointer;
   transition: all 0.24s var(--ease);
 }
-.mode-btn.is-active { background: var(--ink); color: var(--lime); }
+.mode-btn.is-active { background: var(--lime); color: var(--ink); }
 
 .cart-lines { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
 .cart-line {
@@ -1452,6 +1455,7 @@ button { font: inherit; color: inherit; }
   .hero-photos { min-height: 420px; }
   .order-inner,
   .story-inner,
+  .drop-head,
   .contact-inner { grid-template-columns: 1fr; gap: 44px; }
   .story-photos { max-width: 560px; }
 }
@@ -1473,6 +1477,11 @@ button { font: inherit; color: inherit; }
   .hero-tag { font-size: 0.75rem; padding: 8px 13px; }
   .hero-stats { gap: 10px; }
   .stat { flex: 1 1 100%; }
+  .drop-grid { gap: 10px; }
+  .drop-card:nth-child(2) { transform: none; }
+  .drop-card-foot { padding: 20px 10px 10px; flex-direction: column; gap: 0; align-items: flex-start; }
+  .drop-card-name { font-size: 0.875rem; }
+  .drop-card-price { font-size: 0.8125rem; }
   .story-photos { grid-template-columns: 1fr 1fr; gap: 10px; }
   .story-photo:nth-child(2), .story-photo:nth-child(4) { margin-top: 20px; }
   .brand-tag { display: none; }
