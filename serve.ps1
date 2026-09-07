@@ -56,6 +56,9 @@ try {
         $req = $ctx.Request
         $res = $ctx.Response
 
+        try {
+
+        $logPath = $req.Url.AbsolutePath
         $rel = [System.Uri]::UnescapeDataString($req.Url.AbsolutePath).TrimStart('/')
         if ([string]::IsNullOrWhiteSpace($rel)) { $rel = 'index.html' }
         $rel = $rel -replace '/', '\'
@@ -82,16 +85,21 @@ try {
             $res.Headers.Add('Cache-Control', 'no-cache')
             $res.ContentLength64 = $bytes.Length
             $res.OutputStream.Write($bytes, 0, $bytes.Length)
-            Write-Host ("  200  /{0}" -f ($rel -replace '\','/'))
+            Write-Host ("  200  " + $logPath)
         } else {
             $body = [System.Text.Encoding]::UTF8.GetBytes('<h1>404</h1><p>Fichier introuvable.</p>')
             $res.StatusCode = 404
             $res.ContentType = 'text/html; charset=utf-8'
             $res.ContentLength64 = $body.Length
             $res.OutputStream.Write($body, 0, $body.Length)
-            Write-Host ("  404  /{0}" -f ($rel -replace '\','/')) -ForegroundColor DarkYellow
+            Write-Host ("  404  " + $logPath) -ForegroundColor DarkYellow
         }
         $res.Close()
+        } catch {
+            # Un client qui se deconnecte ne doit pas arreter le serveur.
+            Write-Host ("  ERR  " + $logPath + " : " + $_.Exception.Message) -ForegroundColor DarkYellow
+            try { $res.Close() } catch { }
+        }
     }
 } finally {
     $listener.Stop()
