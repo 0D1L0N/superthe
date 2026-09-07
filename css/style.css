@@ -1732,6 +1732,10 @@ button { font: inherit; color: inherit; }
 }
 
 @media (max-width: 720px) {
+  /* Deux colonnes : huit carres en pile faisaient 2 600 px de defilement. */
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .gallery-grid figure { border-radius: var(--r-md); }
+
   .hero-title { font-size: clamp(2.5rem, 11vw, 3.5rem); }
   .hero-inner { padding-top: 48px; padding-bottom: 60px; gap: 40px; }
   .hero-actions { gap: 10px; }
