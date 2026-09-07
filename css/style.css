@@ -142,14 +142,6 @@ button { font: inherit; color: inherit; }
 .accent-deep { color: var(--lime-deep); }
 .accent-amber { color: var(--amber); }
 
-.note {
-  font-size: 0.8125rem;
-  line-height: 1.55;
-  color: var(--on-light-faint);
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
-  margin: 20px 0 0;
-}
-
 .section-head {
   display: flex;
   align-items: flex-end;
@@ -970,7 +962,6 @@ button { font: inherit; color: inherit; }
   color: var(--lime);
   margin-bottom: 1px;
 }
-.shop-line--todo { color: var(--on-dark-faint); font-style: italic; }
 .shop-line + .shop-line { margin-top: 12px; }
 
 .shop-maps {
@@ -1011,7 +1002,6 @@ button { font: inherit; color: inherit; }
   font-weight: 700;
   letter-spacing: 0.04em;
 }
-.note--dark { color: var(--on-dark-faint); }
 
 /* --------------------------------------------------------------------------
    Contact

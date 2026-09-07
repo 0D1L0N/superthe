@@ -15,8 +15,8 @@
     { name: "Jelly noir", price: EXTRA_PRICE, note: "cubes de gelée noire" }
   ];
 
-  /* Les salons. Laisser une chaîne vide affiche « à préciser » sur le site :
-     il suffit de remplir le champ ici pour qu'il apparaisse. */
+  /* Les salons. Un champ laisse vide n'est tout simplement pas affiche :
+     remplir la valeur ici suffit a le faire apparaitre sur le site. */
   var SHOPS = [
     {
       ville: "Vodjè",
@@ -63,12 +63,12 @@
   var CATS = [
     {
       key: "Thé au lait",
-      note: "Thé noir infusé le matin, lait entier, sucre à votre main. 500 ml ou 700 ml, chaud ou glacé — ou en glace pilée, servie en grand format.",
+      note: "Thé noir infusé le matin, lait entier, sucre à votre main. 500 ml ou 700 ml, chaud ou glacé, ou en glace pilée servie en grand format.",
       items: [
         { name: "Glace pilée simple", m: 2000, badge: "Nouveau", photo: "img/p/glace-simple.jpg", desc: "Le thé au lait en version glace pilée, nappé de caramel, avec des éclats de biscuit dans toute la hauteur du gobelet." },
         { name: "Glace pilée à la menthe", m: 2200, badge: "Nouveau", photo: "img/p/glace-menthe.jpg", desc: "La même glace pilée, à la menthe, avec des éclats de biscuit noir. La plus fraîche des trois." },
         { name: "Glace pilée au chocolat", m: 2500, badge: "Nouveau", photo: "img/p/glace-chocolat.jpg", desc: "Un nappage chocolat qui coule le long du gobelet, des éclats de biscuit dedans. La plus gourmande." },
-        { name: "Super Thé — thé au lait aux perles", m: 1200, l: 1400, badge: "Le signature", photo: "img/p/lait-perles.jpg", desc: "Celui par lequel tout a commencé. Thé noir infusé, lait entier, et des perles encore tièdes au fond du gobelet." },
+        { name: "Super Thé aux perles", m: 1200, l: 1400, badge: "Le signature", photo: "img/p/lait-perles.jpg", desc: "Celui par lequel tout a commencé. Thé noir infusé, lait entier, et des perles encore tièdes au fond du gobelet." },
         { name: "Thé au lait classique", m: 1200, l: 1400, badge: "Classique", photo: "img/p/lait-classique.jpg", desc: "Rien dedans, tout dans le thé. La base sur laquelle repose le reste de la carte." },
         { name: "Thé au lait au jelly", m: 1200, l: 1400, badge: "Texture", photo: "img/p/lait-jelly.jpg", desc: "Des cubes de gelée fruitée à la place des perles : plus fermes sous la dent, plus frais en bouche." },
         { name: "Thé au lait au flan de mangue", m: 1200, l: 1400, badge: "Gourmand", photo: "img/p/lait-flan-mangue.jpg", desc: "Le flan est fait le matin. Il fond doucement dans le thé et le rend presque crémeux." },
@@ -94,7 +94,7 @@
       items: [
         { name: "Smoothie à la mangue", m: 1400, l: 1500, badge: "Épais", photo: "img/p/smoothie-mangue.jpg", desc: "Mixé serré : la paille tient debout toute seule. À boire ou à manger à la cuillère." },
         { name: "Smoothie à l'ananas", m: 1400, l: 1500, badge: "Vif", photo: "img/p/smoothies.jpg", desc: "Ananas frais mixé avec du lait glacé. Mousse légère et acidité qui réveille." },
-        { name: "Smoothie à la banane", m: 1400, l: 1500, badge: "Rassasiant", photo: "img/p/smoothie-banane.jpg", desc: "Banane bien mûre, lait glacé. Le plus nourrissant du lot — un vrai petit-déjeuner." }
+        { name: "Smoothie à la banane", m: 1400, l: 1500, badge: "Rassasiant", photo: "img/p/smoothie-banane.jpg", desc: "Banane bien mûre, lait glacé. Le plus nourrissant du lot, un vrai petit-déjeuner." }
       ]
     },
     {
@@ -242,10 +242,11 @@
 
   /* ---------- Salons ---------- */
 
-  function shopLine(label, value, fallback) {
-    return value
-      ? '<p class="shop-line"><span class="shop-label">' + label + "</span>" + escapeHtml(value) + "</p>"
-      : '<p class="shop-line shop-line--todo"><span class="shop-label">' + label + "</span>" + fallback + "</p>";
+  /* Un champ vide n'affiche rien : le visiteur ne voit jamais de trou à
+     combler, seulement les informations réellement disponibles. */
+  function shopLine(label, value) {
+    if (!value) return "";
+    return '<p class="shop-line"><span class="shop-label">' + label + "</span>" + escapeHtml(value) + "</p>";
   }
 
   function renderShops() {
@@ -262,13 +263,11 @@
 
       var html =
         '<h3 class="shop-name">' + escapeHtml(s.ville) + "</h3>" +
-        shopLine("Adresse", s.adresse, "à préciser") +
-        shopLine("Horaires", horaires, soon ? "à l'ouverture" : "à préciser");
+        shopLine("Adresse", s.adresse) +
+        shopLine("Horaires", horaires);
 
       if (s.tel) {
         html += '<a href="tel:' + s.tel.replace(/\s/g, "") + '" class="shop-phone">' + escapeHtml(s.tel) + "</a>";
-      } else {
-        html += '<p class="shop-line shop-line--todo"><span class="shop-label">Téléphone</span>à préciser</p>';
       }
 
       if (s.maps) {
@@ -277,8 +276,6 @@
             '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
               '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/>' +
             "</svg> Ouvrir dans Maps</a>";
-      } else {
-        html += '<p class="shop-line shop-line--todo"><span class="shop-label">Maps</span>lien à ajouter</p>';
       }
 
       html += soon
