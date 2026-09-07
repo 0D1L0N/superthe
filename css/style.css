@@ -803,52 +803,70 @@ button { font: inherit; color: inherit; }
 .item-cta svg { transition: transform 0.25s var(--ease); }
 .item-card:hover .item-cta svg { transform: translateX(4px); }
 
-/* Encart toppings */
-.toppings {
-  margin-top: 28px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-}
-.topping-card {
-  padding: 26px 28px;
-  border-radius: var(--r-lg);
+/* Encart des rajouts */
+.addons {
+  margin-top: 34px;
+  padding: 34px;
+  border-radius: var(--r-xl);
   background: var(--ink);
   color: var(--on-dark);
 }
-.topping-card--light {
-  background: var(--paper);
-  color: var(--on-light);
-  box-shadow: inset 0 0 0 1px var(--line-light);
-}
-.topping-title {
+.addons-head { max-width: 60ch; }
+.addons-title {
   font-family: var(--display);
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.125rem);
   letter-spacing: -0.03em;
-  margin: 0 0 4px;
+  margin: 0;
 }
-.topping-sub { font-size: 0.875rem; color: var(--on-dark-faint); margin: 0 0 18px; }
-.topping-card--light .topping-sub { color: var(--on-light-faint); }
-.topping-list { display: flex; flex-direction: column; gap: 2px; }
-.topping-row {
+.addons-sub { margin: 10px 0 0; font-size: 1rem; color: var(--on-dark-muted); }
+.addons-sub b { color: var(--lime); font-weight: 700; }
+
+.addons-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+.addon {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding: 11px 0;
-  border-top: 1px solid var(--line-dark);
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  border-radius: var(--r-md);
+  background: rgba(158, 232, 23, 0.07);
+  box-shadow: inset 0 0 0 1px var(--line-dark);
+  transition: background 0.25s var(--ease), box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
 }
-.topping-card--light .topping-row { border-top-color: var(--line-light); }
-.topping-row:first-child { border-top: 0; }
-.topping-name { font-weight: 700; font-size: 0.9375rem; flex: 0 0 auto; }
-.topping-desc {
-  font-size: 0.8125rem;
-  line-height: 1.45;
+.addon:hover {
+  transform: translateY(-3px);
+  background: rgba(158, 232, 23, 0.13);
+  box-shadow: inset 0 0 0 1px rgba(158, 232, 23, 0.5);
+}
+.addon-price {
+  align-self: flex-start;
+  padding: 4px 11px;
+  margin-bottom: 6px;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 0.75rem;
+}
+.addon-name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: -0.02em;
+}
+.addon-desc { font-size: 0.875rem; line-height: 1.5; color: var(--on-dark-faint); }
+
+.addons-foot {
+  margin: 22px 0 0;
+  font-size: 0.875rem;
   color: var(--on-dark-faint);
-  margin-left: auto;
-  text-align: right;
 }
-.topping-card--light .topping-desc { color: var(--on-light-faint); }
 
 /* --------------------------------------------------------------------------
    Commander (retrait / livraison)

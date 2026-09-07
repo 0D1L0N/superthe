@@ -134,38 +134,37 @@
     <p id="cat-note" class="cat-note reveal"></p>
     <div id="menu-grid" class="menu-grid"></div>
 
-    <div class="toppings reveal">
-      <div class="topping-card">
-        <h3 class="topping-title">Les ajouts <span class="accent">200 F</span></h3>
-        <p class="topping-sub">Dans n'importe quelle boisson, autant que vous voulez.</p>
-        <div class="topping-list">
-          <div class="topping-row">
-            <span class="topping-name">Perles</span>
-            <span class="topping-desc">Tapioca cuit toutes les deux heures, encore tiède.</span>
-          </div>
-          <div class="topping-row">
-            <span class="topping-name">Flan mangue</span>
-            <span class="topping-desc">Préparé le matin, texture crème renversée.</span>
-          </div>
-          <div class="topping-row">
-            <span class="topping-name">Jelly</span>
-            <span class="topping-desc">Cubes de gelée fruitée, mordant ferme.</span>
-          </div>
+    <div class="addons reveal">
+      <div class="addons-head">
+        <h3 class="addons-title">Vous voulez faire un rajout&nbsp;?</h3>
+        <p class="addons-sub">Dans n'importe quelle boisson, autant que vous voulez. Chaque ajout&nbsp;: <b>200 F</b>.</p>
+      </div>
+      <div class="addons-grid">
+        <div class="addon">
+          <span class="addon-price">200 F</span>
+          <span class="addon-name">Perles</span>
+          <span class="addon-desc">Tapioca cuit toutes les deux heures, encore tiède.</span>
+        </div>
+        <div class="addon">
+          <span class="addon-price">200 F</span>
+          <span class="addon-name">Flan mangue</span>
+          <span class="addon-desc">Préparé le matin, texture crème renversée.</span>
+        </div>
+        <div class="addon">
+          <span class="addon-price">200 F</span>
+          <span class="addon-name">Jelly</span>
+          <span class="addon-desc">Cubes de gelée fruitée, mordant ferme.</span>
+        </div>
+        <div class="addon">
+          <span class="addon-price">200 F</span>
+          <span class="addon-name">Jelly noir</span>
+          <span class="addon-desc">Cubes de gelée noire, plus doux en bouche.</span>
         </div>
       </div>
-      <div class="topping-card topping-card--light">
-        <h3 class="topping-title">Le supplément <span class="accent-deep">1000 F</span></h3>
-        <p class="topping-sub">Pour transformer une boisson en vrai repas.</p>
-        <div class="topping-list">
-          <div class="topping-row">
-            <span class="topping-name">Portion de frites</span>
-            <span class="topping-desc">Coupées et plongées au moment où vous commandez.</span>
-          </div>
-        </div>
-      </div>
+      <p class="addons-foot">Vous les choisissez au moment de composer votre boisson.</p>
     </div>
 
-    <p class="note">[ articles et prix repris du menu Super Thé — descriptions à valider ]</p>
+    <p class="note">[ articles et prix repris du tableau Super Thé — descriptions à valider ]</p>
   </div>
 </section>
 
@@ -337,12 +336,12 @@
       </div>
 
       <div>
-        <span class="field-title">Ajouts</span>
+        <span class="field-title">Rajouts</span>
         <button type="button" id="extras-open" class="extras-trigger" aria-expanded="false" aria-controls="extras-popover">
           <span class="extras-trigger-icon">+</span>
           <span class="extras-trigger-text">
-            <span class="extras-trigger-title">Ajouter dans la boisson</span>
-            <span class="extras-trigger-sub" id="extras-summary">Perles, flan, jelly ou frites</span>
+            <span class="extras-trigger-title">Vous voulez faire un rajout&nbsp;?</span>
+            <span class="extras-trigger-sub" id="extras-summary">Perles, flan, jelly ou jelly noir · 200 F</span>
           </span>
           <svg class="extras-trigger-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
         </button>
@@ -360,10 +359,10 @@
     <!-- Petite fenêtre des ajouts -->
     <div id="extras-popover" class="extras-popover" role="dialog" aria-labelledby="extras-title" hidden>
       <div class="extras-head">
-        <h4 class="extras-title" id="extras-title">Ajouts</h4>
+        <h4 class="extras-title" id="extras-title">Vous voulez faire un rajout ?</h4>
         <button type="button" id="extras-close" class="btn-x" aria-label="Fermer les ajouts">×</button>
       </div>
-      <p class="extras-hint">Cochez ce que vous voulez dedans. Le prix se met à jour tout seul.</p>
+      <p class="extras-hint">Cochez ce que vous voulez dedans, autant que vous voulez. Le prix se met à jour tout seul.</p>
       <div id="extras-list" class="extras-list"></div>
       <button type="button" id="extras-done" class="btn btn--dark btn--sm btn--full extras-done">Terminé</button>
     </div>

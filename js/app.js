@@ -7,11 +7,14 @@
     return n.toLocaleString("fr-FR").replace(/[  ]/g, " ") + " FCFA";
   }
 
+  /* Les quatre ajouts du tableau de la boutique. Tous au même prix. */
+  var EXTRA_PRICE = 200;
+
   var EXTRAS = [
-    { name: "Perles", price: 200, note: "tapioca cuit sur place" },
-    { name: "Flan mangue", price: 200, note: "préparé le matin" },
-    { name: "Jelly", price: 200, note: "gelée fruitée, ferme" },
-    { name: "Portion de frites", price: 1000, note: "coupées à la commande" }
+    { name: "Perles", price: EXTRA_PRICE, note: "tapioca cuit sur place" },
+    { name: "Flan mangue", price: EXTRA_PRICE, note: "préparé le matin" },
+    { name: "Jelly", price: EXTRA_PRICE, note: "gelée fruitée, ferme" },
+    { name: "Jelly noir", price: EXTRA_PRICE, note: "cubes de gelée noire" }
   ];
 
   /* Les salons. Laisser une chaîne vide affiche « à préciser » sur le site :
@@ -402,7 +405,7 @@
     var n = state.extras.length;
     ui["extras-summary"].textContent = n
       ? state.extras.join(", ") + " · +" + extrasTotal().toLocaleString("fr-FR") + " F"
-      : "Perles, flan, jelly ou frites";
+      : "Perles, flan, jelly ou jelly noir · 200 F";
   }
 
   function openExtras() {
