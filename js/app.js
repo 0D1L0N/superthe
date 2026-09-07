@@ -1,200 +1,197 @@
 (function () {
   "use strict";
 
-  const F = n => n.toLocaleString("fr-FR").replace(/[\u202f\u00a0]/g, " ") + " FCFA";
-  const DELIVERY_FEE = 1000;
+  var DELIVERY_FEE = 1000;
 
-  const EXTRAS = [
-    { name: "Flan à la mangue", price: 200 },
-    { name: "Perles", price: 200 },
-    { name: "Jelly", price: 200 },
-    { name: "Portion de frites", price: 1000 }
+  function F(n) {
+    return n.toLocaleString("fr-FR").replace(/[  ]/g, " ") + " FCFA";
+  }
+
+  var EXTRAS = [
+    { name: "Perles", price: 200, note: "tapioca cuit sur place" },
+    { name: "Flan mangue", price: 200, note: "préparé le matin" },
+    { name: "Jelly", price: 200, note: "gelée fruitée, ferme" },
+    { name: "Portion de frites", price: 1000, note: "coupées à la commande" }
   ];
 
-  const CATS = [
+  var CATS = [
     {
       key: "Thé au lait",
-      note: "500 ml ou 700 ml, chaud ou glacé. Base thé infusé le matin, lait entier, sucre ajustable.",
+      note: "Thé noir infusé le matin, lait entier, sucre à votre main. 500 ml ou 700 ml, chaud ou glacé.",
       items: [
-        { name: "Super Thé — thé au lait aux perles", m: 1200, l: 1400, badge: "Le signature", photo: "img/p/lait-perles.jpg", desc: "La recette maison : thé noir infusé, lait entier et perles de tapioca cuites toutes les deux heures, encore tièdes au fond du gobelet.", parts: ["Thé noir", "Lait entier", "Perles de tapioca", "Sucre de canne", "Glace"] },
-        { name: "Thé au lait classique", m: 1200, l: 1400, badge: "Classique", photo: "img/p/lait-classique.jpg", desc: "Le thé au lait sans topping, tout en douceur. La base de tout le reste de la carte.", parts: ["Thé noir", "Lait entier", "Sucre de canne", "Glace"] },
-        { name: "Thé au lait au jelly", m: 1200, l: 1400, badge: "Texture", photo: "img/p/lait-jelly.jpg", desc: "Cubes de gelée fruitée à la place des perles : plus fermes, plus frais sous la dent.", parts: ["Thé noir", "Lait entier", "Jelly fruité", "Glace"] },
-        { name: "Thé au lait au flan de mangue", m: 1200, l: 1400, badge: "Gourmand", photo: "img/p/lait-flan-mangue.jpg", desc: "Flan à la mangue préparé le matin, texture crème renversée qui fond dans le thé.", parts: ["Thé noir", "Lait entier", "Flan mangue", "Purée de mangue"] },
-        { name: "Thé au lait aux mélanges", m: 1200, l: 1400, badge: "Tout dedans", photo: "img/p/lait-melanges.jpg", desc: "Perles, jelly et flan dans le même gobelet, pour ceux qui n'arrivent pas à choisir.", parts: ["Thé noir", "Lait entier", "Perles", "Jelly", "Flan mangue"] },
-        { name: "Thé vert au lait à la menthe", m: 1200, l: 1400, badge: "Très frais", photo: "img/p/lait-menthe.jpg", desc: "Menthe fraîche pilée dans le thé vert au lait : plus végétal, finale glaciale.", parts: ["Thé vert jasmin", "Lait entier", "Menthe fraîche", "Glace"] }
+        { name: "Super Thé — thé au lait aux perles", m: 1200, l: 1400, badge: "Le signature", photo: "img/p/lait-perles.jpg", desc: "Celui par lequel tout a commencé. Thé noir infusé, lait entier, et des perles encore tièdes au fond du gobelet." },
+        { name: "Thé au lait classique", m: 1200, l: 1400, badge: "Classique", photo: "img/p/lait-classique.jpg", desc: "Rien dedans, tout dans le thé. La base sur laquelle repose le reste de la carte." },
+        { name: "Thé au lait au jelly", m: 1200, l: 1400, badge: "Texture", photo: "img/p/lait-jelly.jpg", desc: "Des cubes de gelée fruitée à la place des perles : plus fermes sous la dent, plus frais en bouche." },
+        { name: "Thé au lait au flan de mangue", m: 1200, l: 1400, badge: "Gourmand", photo: "img/p/lait-flan-mangue.jpg", desc: "Le flan est fait le matin. Il fond doucement dans le thé et le rend presque crémeux." },
+        { name: "Thé au lait aux mélanges", m: 1200, l: 1400, badge: "Tout dedans", photo: "img/p/lait-melanges.jpg", desc: "Perles, jelly et flan dans le même gobelet. Pour ceux qui refusent de choisir." },
+        { name: "Thé vert au lait à la menthe", m: 1200, l: 1400, badge: "Très frais", photo: "img/p/lait-menthe.jpg", desc: "De la menthe fraîche pilée dans le thé vert au lait. Plus végétal, finale glaciale." }
       ]
     },
     {
       key: "Thé vert aux fruits",
-      note: "500 ml ou 700 ml, chaud ou glacé. Thé vert jasmin et fruits frais, sans lait.",
+      note: "Thé vert au jasmin et fruits coupés devant vous. Sans lait, peu sucré. 500 ml ou 700 ml.",
       items: [
-        { name: "Thé vert à la mangue", m: 1300, l: 1500, badge: "Best-seller", photo: "img/p/vert-mangue.jpg", desc: "Mangue mûre mixée dans le thé vert glacé, la version la plus solaire de la carte.", parts: ["Thé vert jasmin", "Mangue fraîche", "Glace"] },
-        { name: "Thé vert à l'ananas", m: 1300, l: 1500, badge: "Acidulé", photo: "img/p/the-fruits.jpg", desc: "Ananas frais coupé au comptoir, morceaux compris. Acidité franche, peu sucré.", parts: ["Thé vert jasmin", "Ananas frais", "Glace"] },
-        { name: "Thé vert passion-ananas", m: 1300, l: 1500, badge: "Duo tropical", photo: "img/p/vert-cocktail-3.jpg", desc: "La passion pour l'acidité, l'ananas pour le sucre. Les grains de passion restent dans le verre.", parts: ["Thé vert jasmin", "Pulpe de passion", "Ananas frais", "Glace"] },
-        { name: "Thé vert au citron", m: 1200, l: 1400, badge: "Désaltérant", photo: "img/p/ph-cream.jpg", desc: "Citron pressé minute dans le thé vert : le plus léger et le moins cher des thés fruités.", parts: ["Thé vert jasmin", "Citron pressé", "Glace"] },
-        { name: "Thé vert au citron et au sel de mer", m: 1300, l: 1500, badge: "Sucré-salé", photo: "img/p/ph-lime.jpg", desc: "Citron pressé relevé d'une pointe de sel de mer. L'équilibre qui fait revenir.", parts: ["Thé vert jasmin", "Citron pressé", "Sel de mer", "Glace"] },
-        { name: "Cocktail thé vert aux fruits", m: 1300, l: 1500, badge: "Cocktail", photo: "img/p/vert-cocktail.jpg", desc: "Mangue, ananas et passion réunis dans le même gobelet. Sans alcool.", parts: ["Thé vert jasmin", "Mangue", "Ananas", "Passion"] }
+        { name: "Thé vert à la mangue", m: 1300, l: 1500, badge: "Best-seller", photo: "img/p/vert-mangue.jpg", desc: "De la mangue mûre mixée dans le thé glacé. La boisson la plus solaire de la carte." },
+        { name: "Thé vert à l'ananas", m: 1300, l: 1500, badge: "Acidulé", photo: "img/p/the-fruits.jpg", desc: "Ananas frais coupé au comptoir, morceaux compris. Acidité franche, très peu de sucre." },
+        { name: "Thé vert passion-ananas", m: 1300, l: 1500, badge: "Duo tropical", photo: "img/p/vert-cocktail-3.jpg", desc: "La passion apporte l'acidité, l'ananas le sucre. Les grains restent dans le verre, c'est voulu." },
+        { name: "Thé vert au citron", m: 1200, l: 1400, badge: "Désaltérant", photo: "img/p/ph-cream.jpg", desc: "Citron pressé à la minute. Le plus léger et le moins cher des thés aux fruits." },
+        { name: "Thé vert citron et sel de mer", m: 1300, l: 1500, badge: "Sucré-salé", photo: "img/p/ph-lime.jpg", desc: "Une pointe de sel de mer sur le citron pressé. Surprenant au premier verre, addictif au deuxième." },
+        { name: "Cocktail thé vert aux fruits", m: 1300, l: 1500, badge: "Cocktail", photo: "img/p/vert-cocktail.jpg", desc: "Mangue, ananas et passion réunis dans le même gobelet. Sans alcool, sans compromis." }
       ]
     },
     {
       key: "Smoothies",
-      note: "Petit ou grand format. Fruits entiers mixés à la commande avec du lait glacé, aucune poudre.",
+      note: "Fruits entiers mixés à la commande avec du lait glacé. Aucune poudre, aucun sirop.",
       items: [
-        { name: "Smoothie à la mangue", m: 1400, l: 1500, badge: "Épais", photo: "img/p/smoothie-mangue.jpg", desc: "Mangue et lait glacé mixés serré, texture à la cuillère.", parts: ["Mangue fraîche", "Lait glacé", "Glace pilée"] },
-        { name: "Smoothie à l'ananas", m: 1400, l: 1500, badge: "Vif", photo: "img/p/smoothies.jpg", desc: "Ananas frais mixé, mousse légère et acidité vive.", parts: ["Ananas frais", "Lait glacé", "Glace pilée"] },
-        { name: "Smoothie à la banane", m: 1400, l: 1500, badge: "Rassasiant", photo: "img/p/smoothie-banane.jpg", desc: "Banane bien mûre et lait glacé : le plus nourrissant du lot.", parts: ["Banane", "Lait glacé", "Glace pilée"] }
+        { name: "Smoothie à la mangue", m: 1400, l: 1500, badge: "Épais", photo: "img/p/smoothie-mangue.jpg", desc: "Mixé serré : la paille tient debout toute seule. À boire ou à manger à la cuillère." },
+        { name: "Smoothie à l'ananas", m: 1400, l: 1500, badge: "Vif", photo: "img/p/smoothies.jpg", desc: "Ananas frais mixé avec du lait glacé. Mousse légère et acidité qui réveille." },
+        { name: "Smoothie à la banane", m: 1400, l: 1500, badge: "Rassasiant", photo: "img/p/smoothie-banane.jpg", desc: "Banane bien mûre, lait glacé. Le plus nourrissant du lot — un vrai petit-déjeuner." }
       ]
     },
     {
       key: "Café",
-      note: "Chaud ou glacé, préparé à la machine, à emporter ou sur place.",
+      note: "Préparé à la machine, chaud ou glacé, sur place ou à emporter.",
       items: [
-        { name: "Americano", m: 1500, badge: "Long", photo: "img/p/ph-ink.jpg", desc: "Expresso allongé à l'eau chaude : long, corsé, sans lait.", parts: ["Café en grains", "Eau chaude"] },
-        { name: "Expresso", m: 2000, badge: "Serré", photo: "img/p/ph-ink.jpg", desc: "Servi court, double dose de café.", parts: ["Café en grains", "Eau"] },
-        { name: "Latte", m: 2000, badge: "Doux", photo: "img/p/ph-cream.jpg", desc: "Expresso noyé de lait chaud, mousse fine sur le dessus.", parts: ["Expresso", "Lait chaud", "Mousse de lait"] },
-        { name: "Latte noisette, vanille ou menthe", m: 2000, badge: "3 parfums", photo: "img/p/ph-lime.jpg", desc: "Le latté avec le sirop de votre choix : noisette, vanille ou menthe. À préciser à la commande.", parts: ["Expresso", "Lait chaud", "Sirop au choix"] }
+        { name: "Americano", m: 1500, badge: "Long", photo: "img/p/ph-ink.jpg", desc: "Un expresso allongé à l'eau chaude. Long, corsé, sans lait." },
+        { name: "Expresso", m: 2000, badge: "Serré", photo: "img/p/ph-ink.jpg", desc: "Servi court, double dose de café. Pour ceux qui savent pourquoi ils sont là." },
+        { name: "Latte", m: 2000, badge: "Doux", photo: "img/p/ph-cream.jpg", desc: "Expresso noyé de lait chaud, mousse fine sur le dessus." },
+        { name: "Latte noisette, vanille ou menthe", m: 2000, badge: "3 parfums", photo: "img/p/ph-lime.jpg", desc: "Le latte avec le sirop de votre choix. Précisez-le à la commande." }
       ]
     },
     {
       key: "Pâtisseries",
-      note: "Préparées à la commande, à prendre avec la boisson.",
+      note: "Cuites au moment, à prendre avec la boisson.",
       items: [
-        { name: "Gaufre simple", m: 1200, badge: "Chaud", photo: "img/p/ph-cream.jpg", desc: "Gaufre cuite au moment, croustillante dehors et moelleuse dedans.", parts: ["Pâte à gaufre maison", "Beurre", "Sucre"] }
+        { name: "Gaufre simple", m: 1200, badge: "Chaud", photo: "img/p/ph-cream.jpg", desc: "Croustillante dehors, moelleuse dedans. Elle sort du gaufrier quand vous commandez." }
       ]
     },
     {
       key: "Fast-food",
       note: "Le salé du midi et du soir, monté à la commande.",
       items: [
-        { name: "Chawarma viande", m: 2000, badge: "Sauce maison", photo: "img/p/fastfood.jpg", desc: "Viande grillée roulée serré dans le pain, avec la sauce spéciale maison.", parts: ["Pain libanais", "Viande grillée", "Crudités", "Sauce spéciale maison"] },
-        { name: "Super chawarma", m: 2500, badge: "Généreux", photo: "img/p/ph-ink.jpg", desc: "Le chawarma version double : viande, œufs et sauce maison.", parts: ["Pain libanais", "Viande grillée", "Œufs", "Crudités", "Sauce maison"] },
-        { name: "Hamburger royal", m: 2000, badge: "Complet", photo: "img/p/ph-lime.jpg", desc: "Viande, frites, tomate et oignon dans un pain brioché.", parts: ["Pain brioché", "Viande", "Frites", "Tomate", "Oignon"] },
-        { name: "Super hamburger", m: 3500, badge: "Le plus grand", photo: "img/p/frites-portion.jpg", desc: "Viande, œufs et une portion de frites incluse. Pour les grosses faims.", parts: ["Pain brioché", "Viande", "Œufs", "Portion de frites"] }
+        { name: "Chawarma viande", m: 2000, badge: "Sauce maison", photo: "img/p/fastfood.jpg", desc: "Viande grillée roulée serré dans le pain, avec la sauce spéciale de la maison." },
+        { name: "Super chawarma", m: 2500, badge: "Généreux", photo: "img/p/ph-ink.jpg", desc: "Le chawarma en version double : plus de viande, des œufs, la même sauce." },
+        { name: "Hamburger royal", m: 2000, badge: "Complet", photo: "img/p/ph-lime.jpg", desc: "Viande, frites, tomate et oignon dans un pain brioché." },
+        { name: "Super hamburger", m: 3500, badge: "Le plus grand", photo: "img/p/frites-portion.jpg", desc: "Viande, œufs et une portion de frites comprise. Pour les vraies faims." }
       ]
     }
   ];
 
-  const ITEM_COUNT = CATS.reduce((a, c) => a + c.items.length, 0);
+  var ITEM_COUNT = CATS.reduce(function (a, c) { return a + c.items.length; }, 0);
 
-  const state = {
+  var state = {
     cat: CATS[0].key,
     cart: [],
-    cartOpen: false,
     mode: "pickup",
-    sent: false,
     detail: null,
-    detailCatKey: "",
+    detailCat: "",
     size: "m",
     extras: []
   };
 
-  const el = id => document.getElementById(id);
+  function el(id) { return document.getElementById(id); }
 
-  const els = {
-    cartCount: el("cart-count"),
-    statItemCount: el("stat-item-count"),
-    categories: el("categories"),
-    catNote: el("cat-note"),
-    menuGrid: el("menu-grid"),
-    detailOverlay: el("detail-overlay"),
-    detailBackdrop: el("detail-backdrop"),
-    detailPhoto: el("detail-photo"),
-    detailBadge: el("detail-badge"),
-    detailPriceFrom: el("detail-price-from"),
-    detailCat: el("detail-cat"),
-    detailName: el("detail-name"),
-    detailClose: el("detail-close"),
-    detailDesc: el("detail-desc"),
-    detailParts: el("detail-parts"),
-    detailSizes: el("detail-sizes"),
-    detailExtras: el("detail-extras"),
-    detailAdd: el("detail-add"),
-    detailTotal: el("detail-total"),
-    cartOverlay: el("cart-overlay"),
-    cartBackdrop: el("cart-backdrop"),
-    cartClose: el("cart-close"),
-    modePickup: el("mode-pickup"),
-    modeDelivery: el("mode-delivery"),
-    cartLines: el("cart-lines"),
-    cartEmptyNote: el("cart-empty-note"),
-    deliveryFields: el("delivery-fields"),
-    cartSubtotal: el("cart-subtotal"),
-    feeLabel: el("fee-label"),
-    feeValue: el("fee-value"),
-    cartTotal: el("cart-total"),
-    modeNote: el("mode-note"),
-    cartCheckout: el("cart-checkout"),
-    btnOpenCart: el("btn-open-cart"),
-    btnDeliveryCta: el("btn-delivery-cta"),
-    btnPickupCta: el("btn-pickup-cta"),
-    contactForm: el("contact-form"),
-    contactSubmit: el("contact-submit")
-  };
+  var ui = {};
+  [
+    "cart-count", "stat-item-count", "categories", "cat-note", "menu-grid",
+    "detail-overlay", "detail-backdrop", "detail-photo", "detail-badge",
+    "detail-price-from", "detail-cat", "detail-name", "detail-close",
+    "detail-desc", "detail-sizes", "detail-add", "detail-total",
+    "extras-open", "extras-close", "extras-done", "extras-popover",
+    "extras-list", "extras-summary",
+    "cart-overlay", "cart-backdrop", "cart-close", "mode-pickup",
+    "mode-delivery", "cart-lines", "delivery-fields", "cart-subtotal",
+    "fee-label", "fee-value", "cart-total", "mode-note", "cart-checkout",
+    "btn-open-cart", "btn-delivery-cta", "btn-pickup-cta", "btn-hero-delivery",
+    "contact-form", "contact-submit", "site-header", "d-address", "d-whatsapp"
+  ].forEach(function (id) {
+    ui[id] = el(id);
+  });
 
-  function activeCategory() {
-    return CATS.find(c => c.key === state.cat) || CATS[0];
+  function escapeHtml(str) {
+    var d = document.createElement("div");
+    d.textContent = str;
+    return d.innerHTML;
   }
 
-  function detailPrice() {
-    const d = state.detail;
-    if (!d) return 0;
-    const base = state.size === "l" && d.l ? d.l : d.m;
-    return base + state.extras.reduce((a, name) => {
-      const ex = EXTRAS.find(e => e.name === name);
-      return a + (ex ? ex.price : 0);
+  function activeCategory() {
+    for (var i = 0; i < CATS.length; i++) {
+      if (CATS[i].key === state.cat) return CATS[i];
+    }
+    return CATS[0];
+  }
+
+  function extrasTotal() {
+    return state.extras.reduce(function (a, name) {
+      for (var i = 0; i < EXTRAS.length; i++) {
+        if (EXTRAS[i].name === name) return a + EXTRAS[i].price;
+      }
+      return a;
     }, 0);
   }
 
-  function priceLabel(it) {
-    return it.l ? F(it.m).replace(" FCFA", "") + " / " + F(it.l) : F(it.m);
+  function detailPrice() {
+    var d = state.detail;
+    if (!d) return 0;
+    var base = state.size === "l" && d.l ? d.l : d.m;
+    return base + extrasTotal();
   }
 
+  function priceLabel(it) {
+    return it.l
+      ? it.m.toLocaleString("fr-FR").replace(/[  ]/g, " ") + " / " + F(it.l)
+      : F(it.m);
+  }
+
+  /* ---------- Menu ---------- */
+
   function renderCategories() {
-    els.categories.innerHTML = "";
-    CATS.forEach(cat => {
-      const btn = document.createElement("button");
+    ui["categories"].innerHTML = "";
+    CATS.forEach(function (cat) {
+      var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "cat-btn" + (cat.key === state.cat ? " is-active" : "");
       btn.textContent = cat.key;
-      btn.addEventListener("click", () => {
+      btn.setAttribute("aria-pressed", cat.key === state.cat ? "true" : "false");
+      btn.addEventListener("click", function () {
         state.cat = cat.key;
         renderCategories();
         renderMenu();
       });
-      els.categories.appendChild(btn);
+      ui["categories"].appendChild(btn);
     });
   }
 
   function renderMenu() {
-    const active = activeCategory();
-    els.catNote.textContent = active.note;
-    els.menuGrid.innerHTML = "";
-    active.items.forEach(item => {
-      const card = document.createElement("article");
-      card.className = "item-card";
+    var active = activeCategory();
+    ui["cat-note"].textContent = active.note;
+    ui["menu-grid"].innerHTML = "";
+
+    active.items.forEach(function (item, i) {
+      var card = document.createElement("button");
+      card.type = "button";
+      card.className = "item-card reveal";
+      card.setAttribute("data-delay", String(i % 4));
       card.innerHTML =
-        '<div class="item-photo-wrap">' +
-          '<img class="item-photo" src="' + item.photo + '" alt="' + escapeHtml(item.name) + '" />' +
-          '<span class="item-badge">' + escapeHtml(item.badge) + '</span>' +
-        '</div>' +
-        '<div class="item-body">' +
-          '<div class="item-row">' +
-            '<h3 class="item-name">' + escapeHtml(item.name) + '</h3>' +
-            '<span class="item-price">' + priceLabel(item) + '</span>' +
-          '</div>' +
-          '<p class="item-desc">' + escapeHtml(item.desc) + '</p>' +
-          '<span class="item-cta">Composer et commander →</span>' +
-        '</div>';
-      card.addEventListener("click", () => openItem(item, active.key));
-      els.menuGrid.appendChild(card);
+        '<span class="item-media">' +
+          '<img class="item-photo" src="' + item.photo + '" alt="" loading="lazy" />' +
+          '<span class="item-badge">' + escapeHtml(item.badge) + "</span>" +
+          '<span class="item-price">' + priceLabel(item) + "</span>" +
+        "</span>" +
+        '<span class="item-body">' +
+          '<span class="item-name">' + escapeHtml(item.name) + "</span>" +
+          '<span class="item-desc">' + escapeHtml(item.desc) + "</span>" +
+          '<span class="item-cta">Composer' +
+            ' <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>' +
+          "</span>" +
+        "</span>";
+      card.addEventListener("click", function () { openItem(item, active.key); });
+      ui["menu-grid"].appendChild(card);
+      observeReveal(card);
     });
   }
 
-  function escapeHtml(str) {
-    const d = document.createElement("div");
-    d.textContent = str;
-    return d.innerHTML;
-  }
+  /* ---------- Fiche produit ---------- */
 
   function lockScroll(on) {
     document.body.style.overflow = on ? "hidden" : "";
@@ -202,102 +199,134 @@
 
   function openItem(item, catKey) {
     state.detail = item;
-    state.detailCatKey = catKey;
+    state.detailCat = catKey;
     state.size = "m";
     state.extras = [];
+    closeExtras();
     renderDetail();
-    els.detailOverlay.hidden = false;
+    ui["detail-overlay"].hidden = false;
     lockScroll(true);
+    ui["detail-close"].focus();
   }
 
   function closeDetail() {
-    els.detailOverlay.hidden = true;
+    closeExtras();
+    ui["detail-overlay"].hidden = true;
     state.detail = null;
-    if (els.cartOverlay.hidden) lockScroll(false);
+    if (ui["cart-overlay"].hidden) lockScroll(false);
   }
 
   function renderDetail() {
-    const d = state.detail;
+    var d = state.detail;
     if (!d) return;
-    els.detailPhoto.src = d.photo;
-    els.detailPhoto.alt = d.name;
-    els.detailBadge.textContent = d.badge;
-    els.detailPriceFrom.textContent = "dès " + F(d.m);
-    els.detailCat.textContent = state.detailCatKey;
-    els.detailName.textContent = d.name;
-    els.detailDesc.textContent = d.desc;
 
-    els.detailParts.innerHTML = "";
-    d.parts.forEach(part => {
-      const span = document.createElement("span");
-      span.className = "pill";
-      span.textContent = part;
-      els.detailParts.appendChild(span);
-    });
+    ui["detail-photo"].src = d.photo;
+    ui["detail-photo"].alt = d.name;
+    ui["detail-badge"].textContent = d.badge;
+    ui["detail-cat"].textContent = state.detailCat;
+    ui["detail-price-from"].textContent = "dès " + F(d.m);
+    ui["detail-name"].textContent = d.name;
+    ui["detail-desc"].textContent = d.desc;
 
-    const sizes = d.l
-      ? [{ key: "m", label: "500 ml — " + F(d.m) }, { key: "l", label: "700 ml — " + F(d.l) }]
-      : [{ key: "m", label: "Portion — " + F(d.m) }];
-    els.detailSizes.innerHTML = "";
-    sizes.forEach(s => {
-      const btn = document.createElement("button");
+    var sizes = d.l
+      ? [
+          { key: "m", label: "500 ml", price: d.m },
+          { key: "l", label: "700 ml", price: d.l }
+        ]
+      : [{ key: "m", label: "Portion", price: d.m }];
+
+    ui["detail-sizes"].innerHTML = "";
+    sizes.forEach(function (s) {
+      var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "size-btn" + (state.size === s.key ? " is-active" : "");
-      btn.textContent = s.label;
-      btn.addEventListener("click", () => {
+      btn.innerHTML = "<b>" + s.label + "</b><span>" + F(s.price) + "</span>";
+      btn.addEventListener("click", function () {
         state.size = s.key;
         renderDetail();
       });
-      els.detailSizes.appendChild(btn);
+      ui["detail-sizes"].appendChild(btn);
     });
 
-    els.detailExtras.innerHTML = "";
-    EXTRAS.forEach(e => {
-      const btn = document.createElement("button");
+    renderExtras();
+    ui["detail-total"].textContent = F(detailPrice());
+  }
+
+  /* ---------- Petite fenêtre des ajouts ---------- */
+
+  function renderExtras() {
+    ui["extras-list"].innerHTML = "";
+    EXTRAS.forEach(function (e) {
+      var on = state.extras.indexOf(e.name) !== -1;
+      var btn = document.createElement("button");
       btn.type = "button";
-      const active = state.extras.includes(e.name);
-      btn.className = "extra-btn" + (active ? " is-active" : "");
-      btn.textContent = (active ? "✓ " : "+ ") + e.name + " · " + e.price.toLocaleString("fr-FR") + " F";
-      btn.addEventListener("click", () => {
-        state.extras = active ? state.extras.filter(n => n !== e.name) : [...state.extras, e.name];
-        renderDetail();
+      btn.className = "extra-opt" + (on ? " is-on" : "");
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      btn.innerHTML =
+        '<span class="extra-check" aria-hidden="true">✓</span>' +
+        '<span class="extra-name">' + escapeHtml(e.name) +
+          ' <span style="font-weight:400;opacity:.55">· ' + escapeHtml(e.note) + "</span></span>" +
+        '<span class="extra-price">+' + e.price.toLocaleString("fr-FR") + " F</span>";
+      btn.addEventListener("click", function () {
+        state.extras = on
+          ? state.extras.filter(function (n) { return n !== e.name; })
+          : state.extras.concat([e.name]);
+        renderExtras();
+        ui["detail-total"].textContent = F(detailPrice());
       });
-      els.detailExtras.appendChild(btn);
+      ui["extras-list"].appendChild(btn);
     });
 
-    els.detailTotal.textContent = F(detailPrice());
+    var n = state.extras.length;
+    ui["extras-summary"].textContent = n
+      ? state.extras.join(", ") + " · +" + extrasTotal().toLocaleString("fr-FR") + " F"
+      : "Perles, flan, jelly ou frites";
+  }
+
+  function openExtras() {
+    ui["extras-popover"].hidden = false;
+    ui["extras-open"].setAttribute("aria-expanded", "true");
+    ui["extras-close"].focus();
+  }
+
+  function closeExtras() {
+    ui["extras-popover"].hidden = true;
+    ui["extras-open"].setAttribute("aria-expanded", "false");
   }
 
   function addDetailToCart() {
-    const d = state.detail;
+    var d = state.detail;
     if (!d) return;
-    const sizeLabel = d.l ? (state.size === "l" ? "700 ml" : "500 ml") : "portion";
     state.cart.push({
       name: d.name,
       photo: d.photo,
       price: detailPrice(),
-      sizeLabel,
-      extras: [...state.extras]
+      sizeLabel: d.l ? (state.size === "l" ? "700 ml" : "500 ml") : "portion",
+      extras: state.extras.slice()
     });
     closeDetail();
+    bumpCount();
     openCart();
     renderCart();
   }
 
-  function removeCartLine(index) {
-    state.cart.splice(index, 1);
-    renderCart();
+  /* ---------- Panier ---------- */
+
+  function bumpCount() {
+    var c = ui["cart-count"];
+    c.classList.remove("is-bumped");
+    void c.offsetWidth;
+    c.classList.add("is-bumped");
   }
 
   function openCart() {
-    els.cartOverlay.hidden = false;
-    state.cartOpen = true;
+    ui["cart-overlay"].hidden = false;
     lockScroll(true);
   }
+
   function closeCart() {
-    els.cartOverlay.hidden = true;
-    state.cartOpen = false;
-    if (els.detailOverlay.hidden) lockScroll(false);
+    ui["cart-overlay"].hidden = true;
+    if (ui["detail-overlay"].hidden) lockScroll(false);
   }
 
   function setMode(mode) {
@@ -306,78 +335,155 @@
     renderCart();
   }
 
-  function renderCart() {
-    const cart = state.cart;
-    els.cartCount.textContent = cart.length;
-
-    els.modePickup.className = "mode-btn" + (state.mode === "pickup" ? " is-active" : "");
-    els.modeDelivery.className = "mode-btn" + (state.mode === "delivery" ? " is-active" : "");
-
-    els.cartLines.innerHTML = "";
-    cart.forEach((line, i) => {
-      const row = document.createElement("div");
-      row.className = "cart-line";
-      const detailText = line.sizeLabel + (line.extras.length ? " · " + line.extras.join(", ") : "") + " · " + F(line.price);
-      row.innerHTML =
-        '<div class="cart-line-photo"><img src="' + line.photo + '" alt="' + escapeHtml(line.name) + '" /></div>' +
-        '<div class="cart-line-info">' +
-          '<div class="cart-line-name">' + escapeHtml(line.name) + '</div>' +
-          '<div class="cart-line-detail">' + escapeHtml(detailText) + '</div>' +
-        '</div>' +
-        '<button type="button" class="btn-remove" aria-label="Retirer">−</button>';
-      row.querySelector(".btn-remove").addEventListener("click", () => removeCartLine(i));
-      els.cartLines.appendChild(row);
-    });
-    els.cartEmptyNote.textContent = cart.length ? "" : "Votre commande est vide. Cliquez sur un article du menu pour l'ajouter.";
-
-    const isDelivery = state.mode === "delivery";
-    els.deliveryFields.hidden = !isDelivery;
-
-    const sub = cart.reduce((a, i) => a + i.price, 0);
-    const fee = isDelivery && cart.length ? DELIVERY_FEE : 0;
-
-    els.cartSubtotal.textContent = F(sub);
-    els.feeLabel.textContent = isDelivery ? "Livraison" : "Retrait en boutique";
-    els.feeValue.textContent = isDelivery ? (cart.length ? F(DELIVERY_FEE) : "1 000 FCFA") : "Gratuit";
-    els.cartTotal.textContent = F(sub + fee);
-    els.modeNote.textContent = isDelivery
-      ? "Livraison en 30 min environ, paiement Mobile Money ou espèces à la porte."
-      : "Prêt en 10 min, à retirer au comptoir.";
-    els.cartCheckout.textContent = isDelivery ? "Valider la livraison" : "Valider le retrait";
+  function removeLine(i) {
+    state.cart.splice(i, 1);
+    renderCart();
   }
 
-  function init() {
-    els.statItemCount.textContent = ITEM_COUNT;
+  function renderCart() {
+    var cart = state.cart;
+    ui["cart-count"].textContent = cart.length;
 
+    ui["mode-pickup"].className = "mode-btn" + (state.mode === "pickup" ? " is-active" : "");
+    ui["mode-delivery"].className = "mode-btn" + (state.mode === "delivery" ? " is-active" : "");
+
+    ui["cart-lines"].innerHTML = "";
+
+    if (!cart.length) {
+      ui["cart-lines"].innerHTML =
+        '<div class="cart-empty">' +
+          '<span class="cart-empty-icon" aria-hidden="true">🧋</span>' +
+          "<p>Votre commande est vide. Touchez un article du menu pour l'ajouter.</p>" +
+        "</div>";
+    } else {
+      cart.forEach(function (line, i) {
+        var detail = line.sizeLabel + (line.extras.length ? " · " + line.extras.join(", ") : "");
+        var row = document.createElement("div");
+        row.className = "cart-line";
+        row.innerHTML =
+          '<span class="cart-line-photo"><img src="' + line.photo + '" alt="" /></span>' +
+          '<span class="cart-line-info">' +
+            '<span class="cart-line-name">' + escapeHtml(line.name) + "</span>" +
+            '<span class="cart-line-detail">' + escapeHtml(detail) + "</span>" +
+          "</span>" +
+          '<span class="cart-line-price">' + F(line.price) + "</span>" +
+          '<button type="button" class="btn-remove" aria-label="Retirer ' + escapeHtml(line.name) + '">−</button>';
+        row.querySelector(".btn-remove").addEventListener("click", function () { removeLine(i); });
+        ui["cart-lines"].appendChild(row);
+      });
+    }
+
+    var isDelivery = state.mode === "delivery";
+    ui["delivery-fields"].hidden = !isDelivery;
+
+    var sub = cart.reduce(function (a, i) { return a + i.price; }, 0);
+    var fee = isDelivery && cart.length ? DELIVERY_FEE : 0;
+
+    ui["cart-subtotal"].textContent = F(sub);
+    ui["fee-label"].textContent = isDelivery ? "Livraison" : "Retrait en boutique";
+    ui["fee-value"].textContent = isDelivery ? F(DELIVERY_FEE) : "Gratuit";
+    ui["cart-total"].textContent = F(sub + fee);
+    ui["mode-note"].textContent = isDelivery
+      ? "Vous payez, on transmet votre numéro WhatsApp au livreur, il prend le relais."
+      : "Votre commande vous attend au comptoir. Rien à payer en plus.";
+    ui["cart-checkout"].textContent = isDelivery ? "Payer et envoyer" : "Valider le retrait";
+  }
+
+  function checkout() {
+    if (!state.cart.length) return;
+
+    if (state.mode === "delivery") {
+      var addr = ui["d-address"].value.trim();
+      var wa = ui["d-whatsapp"].value.trim();
+      if (!addr || !wa) {
+        (addr ? ui["d-whatsapp"] : ui["d-address"]).focus();
+        ui["mode-note"].textContent = "Il nous faut l'adresse et le numéro WhatsApp pour envoyer le livreur.";
+        return;
+      }
+    }
+
+    ui["cart-checkout"].textContent = "Commande envoyée ✓";
+    ui["mode-note"].textContent = state.mode === "delivery"
+      ? "C'est parti. Le livreur vous écrit sur WhatsApp."
+      : "C'est noté. Passez quand vous voulez au comptoir.";
+  }
+
+  /* ---------- Apparition au défilement ---------- */
+
+  var revealObserver = null;
+
+  function observeReveal(node) {
+    if (revealObserver) revealObserver.observe(node);
+    else node.classList.add("is-in");
+  }
+
+  function initReveal() {
+    if (!("IntersectionObserver" in window)) {
+      Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function (n) {
+        n.classList.add("is-in");
+      });
+      return;
+    }
+    revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        revealObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+
+    Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function (n) {
+      revealObserver.observe(n);
+    });
+  }
+
+  /* ---------- Démarrage ---------- */
+
+  function init() {
+    ui["stat-item-count"].textContent = ITEM_COUNT;
+
+    initReveal();
     renderCategories();
     renderMenu();
     renderCart();
 
-    els.btnOpenCart.addEventListener("click", openCart);
-    els.cartClose.addEventListener("click", closeCart);
-    els.cartBackdrop.addEventListener("click", closeCart);
+    ui["btn-open-cart"].addEventListener("click", openCart);
+    ui["cart-close"].addEventListener("click", closeCart);
+    ui["cart-backdrop"].addEventListener("click", closeCart);
+    ui["cart-checkout"].addEventListener("click", checkout);
 
-    els.detailClose.addEventListener("click", closeDetail);
-    els.detailBackdrop.addEventListener("click", closeDetail);
-    els.detailAdd.addEventListener("click", addDetailToCart);
+    ui["detail-close"].addEventListener("click", closeDetail);
+    ui["detail-backdrop"].addEventListener("click", closeDetail);
+    ui["detail-add"].addEventListener("click", addDetailToCart);
 
-    els.modePickup.addEventListener("click", () => setMode("pickup"));
-    els.modeDelivery.addEventListener("click", () => setMode("delivery"));
-    els.btnDeliveryCta.addEventListener("click", () => setMode("delivery"));
-    els.btnPickupCta.addEventListener("click", () => setMode("pickup"));
-    els.cartCheckout.addEventListener("click", closeCart);
+    ui["extras-open"].addEventListener("click", openExtras);
+    ui["extras-close"].addEventListener("click", closeExtras);
+    ui["extras-done"].addEventListener("click", closeExtras);
 
-    els.contactForm.addEventListener("submit", e => {
+    ui["mode-pickup"].addEventListener("click", function () { setMode("pickup"); });
+    ui["mode-delivery"].addEventListener("click", function () { setMode("delivery"); });
+    ui["btn-pickup-cta"].addEventListener("click", function () { setMode("pickup"); });
+    ui["btn-delivery-cta"].addEventListener("click", function () { setMode("delivery"); });
+    ui["btn-hero-delivery"].addEventListener("click", function () { setMode("delivery"); });
+
+    ui["contact-form"].addEventListener("submit", function (e) {
       e.preventDefault();
-      state.sent = true;
-      els.contactSubmit.textContent = "Message envoyé ✓";
+      ui["contact-submit"].textContent = "Demande envoyée ✓";
+      ui["contact-submit"].disabled = true;
     });
 
-    document.addEventListener("keydown", e => {
+    document.addEventListener("keydown", function (e) {
       if (e.key !== "Escape") return;
-      if (!els.detailOverlay.hidden) closeDetail();
-      if (!els.cartOverlay.hidden) closeCart();
+      if (!ui["extras-popover"].hidden) { closeExtras(); return; }
+      if (!ui["detail-overlay"].hidden) { closeDetail(); return; }
+      if (!ui["cart-overlay"].hidden) closeCart();
     });
+
+    var onScroll = function () {
+      ui["site-header"].classList.toggle("is-stuck", window.scrollY > 8);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
   }
 
   document.addEventListener("DOMContentLoaded", init);
