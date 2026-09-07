@@ -14,6 +14,51 @@
     { name: "Portion de frites", price: 1000, note: "coupées à la commande" }
   ];
 
+  /* Les salons. Laisser une chaîne vide affiche « à préciser » sur le site :
+     il suffit de remplir le champ ici pour qu'il apparaisse. */
+  var SHOPS = [
+    {
+      ville: "Vodjè",
+      adresse: "",              // ex. "Carrefour Vodjè, en face de la pharmacie"
+      ouverture: "",            // ex. "9 h"
+      fermeture: "",            // ex. "22 h"
+      jours: "",                // ex. "Lundi au samedi"
+      tel: "+2290155995757",
+      maps: "",                 // lien Google Maps du salon
+      statut: "ouvert"
+    },
+    {
+      ville: "Calavi",
+      adresse: "",
+      ouverture: "",
+      fermeture: "",
+      jours: "",
+      tel: "+2290192119292",
+      maps: "",
+      statut: "ouvert"
+    },
+    {
+      ville: "Akpakpa",
+      adresse: "",
+      ouverture: "",
+      fermeture: "",
+      jours: "",
+      tel: "",
+      maps: "",
+      statut: "ouvert"
+    },
+    {
+      ville: "Porto-Novo",
+      adresse: "",
+      ouverture: "",
+      fermeture: "",
+      jours: "",
+      tel: "",
+      maps: "",
+      statut: "bientot"
+    }
+  ];
+
   var CATS = [
     {
       key: "Glaces pilées",
@@ -112,7 +157,8 @@
     "mode-delivery", "cart-lines", "delivery-fields", "cart-subtotal",
     "fee-label", "fee-value", "cart-total", "mode-note", "cart-checkout",
     "btn-open-cart", "btn-delivery-cta", "btn-pickup-cta", "btn-hero-delivery",
-    "contact-form", "contact-submit", "site-header", "d-address", "d-whatsapp"
+    "contact-form", "contact-submit", "site-header", "d-address", "d-whatsapp",
+    "shops-grid"
   ].forEach(function (id) {
     ui[id] = el(id);
   });
@@ -201,6 +247,57 @@
     });
   }
 
+  /* ---------- Salons ---------- */
+
+  function shopLine(label, value, fallback) {
+    return value
+      ? '<p class="shop-line"><span class="shop-label">' + label + "</span>" + escapeHtml(value) + "</p>"
+      : '<p class="shop-line shop-line--todo"><span class="shop-label">' + label + "</span>" + fallback + "</p>";
+  }
+
+  function renderShops() {
+    ui["shops-grid"].innerHTML = "";
+
+    SHOPS.forEach(function (s, i) {
+      var soon = s.statut === "bientot";
+      var horaires = s.ouverture && s.fermeture ? s.ouverture + " – " + s.fermeture : "";
+      if (horaires && s.jours) horaires = s.jours + " · " + horaires;
+
+      var card = document.createElement("article");
+      card.className = "shop-card reveal" + (soon ? " shop-card--soon" : "");
+      card.setAttribute("data-delay", String(i % 4));
+
+      var html =
+        '<h3 class="shop-name">' + escapeHtml(s.ville) + "</h3>" +
+        shopLine("Adresse", s.adresse, "à préciser") +
+        shopLine("Horaires", horaires, soon ? "à l'ouverture" : "à préciser");
+
+      if (s.tel) {
+        html += '<a href="tel:' + s.tel.replace(/\s/g, "") + '" class="shop-phone">' + escapeHtml(s.tel) + "</a>";
+      } else {
+        html += '<p class="shop-line shop-line--todo"><span class="shop-label">Téléphone</span>à préciser</p>';
+      }
+
+      if (s.maps) {
+        html +=
+          '<a href="' + s.maps + '" target="_blank" rel="noopener" class="shop-maps">' +
+            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+              '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/>' +
+            "</svg> Ouvrir dans Maps</a>";
+      } else {
+        html += '<p class="shop-line shop-line--todo"><span class="shop-label">Maps</span>lien à ajouter</p>';
+      }
+
+      html += soon
+        ? '<span class="shop-tag shop-tag--soon">Ouverture prochaine</span>'
+        : '<span class="shop-tag">Retrait &amp; livraison</span>';
+
+      card.innerHTML = html;
+      ui["shops-grid"].appendChild(card);
+      observeReveal(card);
+    });
+  }
+
   /* ---------- Fiche produit ---------- */
 
   function lockScroll(on) {
@@ -217,6 +314,20 @@
     ui["detail-overlay"].hidden = false;
     lockScroll(true);
     ui["detail-close"].focus();
+  }
+
+  /* Ouvre une fiche depuis n'importe où — les cartes de la section nouveauté
+     s'en servent pour amener directement à la commande. */
+  function openItemByName(name) {
+    for (var c = 0; c < CATS.length; c++) {
+      for (var i = 0; i < CATS[c].items.length; i++) {
+        if (CATS[c].items[i].name === name) {
+          openItem(CATS[c].items[i], CATS[c].key);
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   function closeDetail() {
@@ -456,7 +567,14 @@
     initReveal();
     renderCategories();
     renderMenu();
+    renderShops();
     renderCart();
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-item]"), function (btn) {
+      btn.addEventListener("click", function () {
+        openItemByName(btn.getAttribute("data-item"));
+      });
+    });
 
     ui["btn-open-cart"].addEventListener("click", openCart);
     ui["cart-close"].addEventListener("click", closeCart);
