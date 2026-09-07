@@ -1,0 +1,682 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --lime: #76CD13;
+  --neon: #39FF14;
+  --apple: #4CBB17;
+  --dark-green: #3f7a0a;
+  --darker-green: #2b4a08;
+  --ink: #101010;
+  --white: #ffffff;
+  --tint: #f0f8e4;
+  --tint-soft: #f4f8ec;
+  --field-bg: #fbfdf7;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+a { color: var(--dark-green); text-decoration: none; }
+a:hover { color: var(--ink); }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.min0 { min-width: 0; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(16,16,16,0.1);
+}
+.header-inner {
+  padding: 11px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex: 0 0 auto;
+}
+.brand-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.brand-name {
+  font-family: "Baloo 2", cursive;
+  font-weight: 800;
+  font-size: 21px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.brand-tag {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--apple);
+}
+.main-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.nav-link {
+  padding: 9px 13px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
+  transition: background 0.15s ease;
+}
+.nav-link:hover { background: var(--tint); color: var(--ink); }
+.btn-order {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  cursor: pointer;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--ink);
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 16px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.btn-order:hover { background: var(--ink); color: var(--lime); }
+.cart-count {
+  min-width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--neon);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 0 6px;
+}
+.btn-order:hover .cart-count { background: rgba(255,255,255,0.15); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  background: var(--ink);
+  color: var(--white);
+  overflow: hidden;
+}
+.hero-inner {
+  padding: 70px 20px 78px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 44px;
+  align-items: center;
+}
+.eyebrow-pill {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-title {
+  font-family: "Baloo 2", cursive;
+  font-weight: 800;
+  font-size: clamp(42px, 6.6vw, 78px);
+  line-height: 0.99;
+  margin: 22px 0 0;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.accent-lime { color: var(--lime); }
+.accent-dark-green { color: var(--dark-green); }
+.hero-desc {
+  font-size: 19px;
+  line-height: 1.6;
+  max-width: 46ch;
+  margin: 22px 0 0;
+  color: rgba(255,255,255,0.82);
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.btn-solid {
+  display: inline-block;
+  padding: 15px 28px;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--ink);
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 18px;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn-solid:hover { background: var(--white); color: var(--ink); }
+.btn-solid--full { width: 100%; text-align: center; margin-top: 4px; }
+.btn-outline {
+  display: inline-block;
+  padding: 15px 28px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,0.45);
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 18px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.btn-outline:hover { border-color: var(--lime); color: var(--lime); }
+.hero-stats { display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+.stat-num {
+  font-family: "Baloo 2", cursive;
+  font-size: 29px;
+  font-weight: 800;
+  color: var(--lime);
+}
+.stat-label { font-size: 14px; color: rgba(255,255,255,0.7); }
+.hero-photos { min-width: 0; display: flex; justify-content: center; }
+.hero-photo {
+  width: 58%;
+  max-width: 290px;
+  border-radius: 26px;
+  object-fit: cover;
+  aspect-ratio: 3/4;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  animation: floaty 7s ease-in-out infinite;
+}
+.hero-photo-1 { object-position: 35% center; }
+.hero-photo-2 {
+  object-position: 40% center;
+  margin-left: -14%;
+  margin-top: 54px;
+  animation-delay: 1.4s;
+}
+
+/* ---------- Ticker ---------- */
+.ticker { background: var(--lime); color: var(--ink); }
+.ticker-inner {
+  padding: 16px 20px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+/* ---------- Section heads ---------- */
+.eyebrow {
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--apple);
+}
+.eyebrow--lime { color: var(--lime); }
+.h2 {
+  font-family: "Baloo 2", cursive;
+  font-weight: 800;
+  font-size: clamp(34px, 5vw, 54px);
+  margin: 8px 0 0;
+  letter-spacing: -0.02em;
+}
+.h2--tight { font-size: clamp(32px, 4.6vw, 50px); margin: 8px 0 14px; line-height: 1.05; }
+
+/* ---------- Menu ---------- */
+.menu-section { max-width: 1200px; margin: 0 auto; padding: 82px 20px 0; }
+.menu-section .wrap { padding: 0; }
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+.section-intro { max-width: 46ch; font-size: 16px; line-height: 1.6; color: rgba(16,16,16,0.7); margin: 0; }
+.section-intro--big { font-size: 18px; line-height: 1.65; color: rgba(16,16,16,0.72); max-width: 46ch; }
+.categories { display: flex; gap: 10px; flex-wrap: wrap; margin: 30px 0 0; }
+.cat-btn {
+  padding: 11px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 16px;
+}
+.cat-btn.is-active { background: var(--lime); }
+.cat-note { margin: 22px 0 0; font-size: 17px; line-height: 1.6; color: rgba(16,16,16,0.72); max-width: 62ch; }
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+.item-card {
+  cursor: pointer;
+  background: var(--white);
+  border: 1px solid rgba(16,16,16,0.12);
+  border-radius: 22px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.item-card:hover { border-color: var(--lime); box-shadow: 0 14px 30px rgba(16,16,16,0.1); }
+.item-photo-wrap { position: relative; background: var(--tint-soft); aspect-ratio: 4/3; }
+.item-photo { width: 100%; height: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.item-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.item-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.item-row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.item-name {
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 19px;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.item-price { font-family: "Baloo 2", cursive; font-weight: 700; font-size: 16px; color: var(--dark-green); white-space: nowrap; }
+.item-desc { margin: 0; font-size: 15px; line-height: 1.5; color: rgba(16,16,16,0.68); flex: 1; }
+.item-cta { font-size: 13px; font-weight: 800; color: var(--dark-green); }
+
+.addons-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.addon-card { border-radius: 24px; padding: 26px; }
+.addon-card--dark { background: var(--ink); color: var(--white); }
+.addon-card--light { background: var(--tint); border: 1px solid rgba(16,16,16,0.1); }
+.addon-title { font-family: "Baloo 2", cursive; font-weight: 800; font-size: 26px; line-height: 1.05; }
+.addon-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.addon-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+.addon-card--light .addon-row { border-bottom: none; margin-top: 16px; }
+.addon-row--single { padding-bottom: 0; border-bottom: none; }
+.addon-name { font-weight: 700; font-size: 16px; }
+.addon-desc { font-size: 14px; color: rgba(255,255,255,0.6); text-align: right; }
+.addon-card--light .addon-desc { color: rgba(16,16,16,0.6); }
+.mono-note { margin: 18px 0 0; font-size: 13px; font-family: ui-monospace, monospace; color: rgba(16,16,16,0.45); }
+.mono-note--tiny { font-size: 12px; color: rgba(16,16,16,0.42); margin: 0; }
+
+/* ---------- Delivery ---------- */
+.delivery-section {
+  margin-top: 82px;
+  background: var(--tint);
+  border-top: 1px solid rgba(16,16,16,0.09);
+  border-bottom: 1px solid rgba(16,16,16,0.09);
+}
+.delivery-inner {
+  padding: 76px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 40px;
+  align-items: center;
+}
+.delivery-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.btn-dark {
+  border: 0;
+  cursor: pointer;
+  padding: 15px 26px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--white);
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 17px;
+  transition: background 0.15s ease;
+}
+.btn-dark:hover { background: var(--apple); }
+.btn-outline-dark {
+  border: 2px solid var(--ink);
+  cursor: pointer;
+  padding: 13px 26px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 17px;
+  transition: background 0.15s ease;
+}
+.btn-outline-dark:hover { background: var(--lime); }
+.delivery-steps { min-width: 0; display: grid; gap: 14px; }
+.step-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--white);
+  border: 1px solid rgba(16,16,16,0.1);
+  border-radius: 18px;
+  padding: 20px;
+}
+.step-num {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Baloo 2", cursive;
+  font-weight: 800;
+  font-size: 18px;
+}
+.step-title { font-family: "Baloo 2", cursive; font-weight: 700; font-size: 19px; }
+.step-text { font-size: 15px; line-height: 1.5; color: rgba(16,16,16,0.68); margin-top: 2px; }
+
+/* ---------- Story ---------- */
+.story-section { background: var(--ink); color: var(--white); }
+.story-inner {
+  padding: 82px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 46px;
+  align-items: center;
+}
+.story-text { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.82); max-width: 50ch; }
+.story-photos { min-width: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.story-photo { width: 100%; border-radius: 20px; object-fit: cover; aspect-ratio: 1; }
+.story-photo--down { margin-top: 28px; }
+
+/* ---------- Gallery ---------- */
+.gallery-section { max-width: 1200px; margin: 0 auto; padding: 82px 20px; }
+.gallery-section .wrap { padding: 0; }
+.gallery-h2 { margin: 8px 0 26px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
+}
+.gallery-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 18px; }
+
+/* ---------- Shops ---------- */
+.shops-section {
+  background: var(--tint);
+  border-top: 1px solid rgba(16,16,16,0.09);
+  border-bottom: 1px solid rgba(16,16,16,0.09);
+}
+.shops-section .wrap { padding: 78px 20px; }
+.shops-h2 { margin: 8px 0 28px; }
+.shops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+.shop-card { border: 1px solid rgba(16,16,16,0.12); border-radius: 22px; padding: 26px; background: var(--white); }
+.shop-name { font-family: "Baloo 2", cursive; font-weight: 700; font-size: 23px; margin: 0 0 12px; }
+.shop-line { margin: 0 0 4px; font-size: 16px; line-height: 1.55; }
+.shop-line--muted { margin: 0 0 6px; color: rgba(16,16,16,0.65); }
+.shop-phone { margin: 0 0 16px; font-size: 16px; font-weight: 700; }
+.shop-status { display: inline-block; padding: 6px 14px; border-radius: 999px; background: var(--lime); color: var(--ink); font-size: 13px; font-weight: 800; }
+
+/* ---------- Contact ---------- */
+.contact-section { max-width: 1200px; margin: 0 auto; padding: 82px 20px; }
+.contact-section .wrap { padding: 0; }
+.contact-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 46px; }
+.contact-h2 { margin: 8px 0 16px; }
+.contact-intro { max-width: 42ch; }
+.contact-links { display: flex; flex-direction: column; gap: 8px; margin-top: 22px; font-size: 17px; }
+.contact-form {
+  min-width: 0;
+  background: var(--white);
+  border: 1px solid rgba(16,16,16,0.12);
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.field-label { font-size: 14px; font-weight: 700; display: block; }
+.field-input {
+  margin-top: 6px;
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(16,16,16,0.18);
+  background: var(--field-bg);
+  font-family: inherit;
+  font-size: 16px;
+}
+.field-textarea { resize: vertical; }
+.contact-form .btn-solid--full:hover { background: var(--ink); color: var(--white); }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--ink); color: var(--white); }
+.footer-inner {
+  padding: 40px 20px;
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-logo { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; background: var(--white); }
+.footer-title { font-family: "Baloo 2", cursive; font-weight: 800; font-size: 20px; }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; font-size: 15px; font-weight: 700; }
+.footer-links a { color: var(--white); }
+.footer-copy { font-size: 14px; color: rgba(255,255,255,0.6); }
+
+/* ---------- Overlays (modal + cart) ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(16,16,16,0.6);
+}
+.overlay[hidden] { display: none; }
+.overlay--right { z-index: 80; justify-content: flex-end; padding: 0; background: rgba(16,16,16,0.5); }
+.overlay-backdrop { position: absolute; inset: 0; cursor: pointer; }
+
+.detail-modal {
+  position: relative;
+  width: min(880px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  background: var(--white);
+  border-radius: 26px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.detail-photo { width: 100%; height: 100%; min-height: 260px; max-height: 460px; object-fit: cover; background: var(--tint-soft); }
+.detail-body { padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+.detail-head { display: flex; justify-content: space-between; gap: 14px; align-items: flex-start; }
+.detail-name { font-family: "Baloo 2", cursive; font-weight: 800; font-size: 27px; margin: 4px 0 0; line-height: 1.1; }
+.btn-x {
+  border: 0;
+  background: var(--tint);
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+.detail-desc { margin: 0; font-size: 16px; line-height: 1.6; color: rgba(16,16,16,0.72); }
+.micro-label { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(16,16,16,0.45); }
+.pill-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+.pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--tint);
+  color: var(--darker-green);
+  font-size: 13px;
+  font-weight: 700;
+}
+.size-btn {
+  padding: 10px 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  border: 2px solid rgba(16,16,16,0.18);
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15px;
+}
+.size-btn.is-active { border-color: var(--lime); background: var(--lime); }
+.extra-btn {
+  padding: 9px 15px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 2px solid rgba(16,16,16,0.18);
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 14px;
+}
+.extra-btn.is-active { border-color: var(--lime); background: var(--lime); }
+.btn-add {
+  margin-top: auto;
+  border: 0;
+  cursor: pointer;
+  padding: 16px 22px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--white);
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 17px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  transition: background 0.15s ease;
+}
+.btn-add:hover { background: var(--apple); }
+
+.cart-drawer {
+  position: relative;
+  width: min(430px, 100%);
+  height: 100%;
+  background: var(--white);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: -20px 0 60px rgba(0,0,0,0.28);
+}
+.cart-head { display: flex; align-items: center; justify-content: space-between; }
+.cart-title { font-family: "Baloo 2", cursive; font-weight: 800; font-size: 25px; margin: 0; }
+.mode-toggle { display: flex; gap: 8px; background: var(--tint); padding: 5px; border-radius: 999px; }
+.mode-btn {
+  flex: 1;
+  border: 0;
+  cursor: pointer;
+  padding: 11px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 15px;
+}
+.mode-btn.is-active { background: var(--lime); }
+.cart-lines { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+.cart-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--field-bg);
+  border: 1px solid rgba(16,16,16,0.1);
+  border-radius: 16px;
+  padding: 12px;
+}
+.cart-line-photo { width: 52px; height: 52px; border-radius: 12px; background: var(--tint-soft); flex: 0 0 auto; overflow: hidden; }
+.cart-line-photo img { width: 100%; height: 100%; object-fit: cover; }
+.cart-line-info { flex: 1; min-width: 0; }
+.cart-line-name { font-family: "Baloo 2", cursive; font-weight: 700; font-size: 16px; line-height: 1.2; }
+.cart-line-detail { font-size: 13px; color: rgba(16,16,16,0.6); }
+.btn-remove {
+  border: 0;
+  background: var(--tint);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+.cart-empty-note { font-size: 15px; color: rgba(16,16,16,0.55); }
+.delivery-fields { display: flex; flex-direction: column; gap: 8px; }
+.cart-summary { border-top: 1px solid rgba(16,16,16,0.12); padding-top: 14px; }
+.summary-row { display: flex; justify-content: space-between; font-size: 15px; color: rgba(16,16,16,0.65); margin-top: 4px; }
+.summary-row:first-child { margin-top: 0; }
+.summary-row--total {
+  font-family: "Baloo 2", cursive;
+  font-weight: 800;
+  font-size: 21px;
+  color: var(--ink);
+  margin-top: 8px;
+}
+.mode-note { font-size: 13px; color: rgba(16,16,16,0.55); margin: 8px 0 12px; }
+#cart-checkout:hover { background: var(--ink); color: var(--white); }
+
+@media (max-width: 640px) {
+  .main-nav { gap: 0; }
+  .nav-link { padding: 8px 10px; font-size: 14px; }
+}

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Thé — La saveur unique</title>
+<meta name="description" content="Super Thé : bubble tea, thés glacés, smoothies et fast-food. Retrait en boutique ou livraison à domicile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="img/logo.jpg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="brand">
+      <img src="img/logo.jpg" alt="Super Thé" class="brand-logo" />
+      <span class="brand-text">
+        <span class="brand-name">Super Thé</span>
+        <span class="brand-tag">La saveur unique</span>
+      </span>
+    </a>
+    <nav class="main-nav">
+      <a href="#menu" class="nav-link">Menu</a>
+      <a href="#livraison" class="nav-link">Livraison</a>
+      <a href="#histoire" class="nav-link">Notre histoire</a>
+      <a href="#galerie" class="nav-link">Galerie</a>
+      <a href="#boutiques" class="nav-link">Boutiques</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <button type="button" id="btn-open-cart" class="btn-order">
+        Commander
+        <span id="cart-count" class="cart-count">0</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<section id="top" class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow-pill">Bubble tea · smoothies · fast-food</span>
+      <h1 class="hero-title">Le thé, mais<br />avec <span class="accent-lime">du caractère.</span></h1>
+      <p class="hero-desc">Thés infusés le matin, perles cuites toutes les deux heures, fruits frais mixés à la commande. Chaud ou glacé, 500&nbsp;ml ou 700&nbsp;ml. Retrait en boutique ou livraison à domicile.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-solid">Voir le menu</a>
+        <a href="#livraison" class="btn-outline">Se faire livrer</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num" id="stat-item-count">21</div><div class="stat-label">articles à la carte</div></div>
+        <div class="stat"><div class="stat-num">dès 1200 F</div><div class="stat-label">le thé au lait 500 ml</div></div>
+        <div class="stat"><div class="stat-num">30 min</div><div class="stat-label">livraison en ville</div></div>
+      </div>
+    </div>
+    <div class="hero-photos">
+      <img src="img/g1.jpg" alt="Cliente avec un thé au lait Super Thé" class="hero-photo hero-photo-1" />
+      <img src="img/g2.jpg" alt="Cliente avec un thé vert au lait à la menthe" class="hero-photo hero-photo-2" />
+    </div>
+  </div>
+</section>
+
+<section class="ticker">
+  <div class="wrap ticker-inner">
+    <span>Perles cuites sur place</span>
+    <span>✳</span>
+    <span>Chaud ou glacé, au choix</span>
+    <span>✳</span>
+    <span>Ajout topping 200 FCFA</span>
+    <span>✳</span>
+    <span>Livraison 1000 FCFA</span>
+  </div>
+</section>
+
+<section id="menu" class="menu-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">La carte</span>
+        <h2 class="h2">Menu complet</h2>
+      </div>
+      <p class="section-intro">Cliquez sur un article pour voir la photo, les composants et choisir la taille et les toppings. Deux prix : 500 ml puis 700 ml.</p>
+    </div>
+
+    <div id="categories" class="categories"></div>
+
+    <p id="cat-note" class="cat-note"></p>
+
+    <div id="menu-grid" class="menu-grid"></div>
+
+    <div class="addons-grid">
+      <div class="addon-card addon-card--dark">
+        <div class="addon-title">Ajout <span class="accent-lime">200 FCFA</span></div>
+        <div class="addon-list">
+          <div class="addon-row">
+            <span class="addon-name">Flan à la mangue</span>
+            <span class="addon-desc">Préparé le matin, texture crème renversée.</span>
+          </div>
+          <div class="addon-row">
+            <span class="addon-name">Perles</span>
+            <span class="addon-desc">Tapioca cuit toutes les deux heures.</span>
+          </div>
+          <div class="addon-row">
+            <span class="addon-name">Jelly</span>
+            <span class="addon-desc">Cubes de gelée fruitée, mordant ferme.</span>
+          </div>
+        </div>
+      </div>
+      <div class="addon-card addon-card--light">
+        <div class="addon-title">Ajout <span class="accent-dark-green">1000 FCFA</span></div>
+        <div class="addon-row addon-row--single">
+          <span class="addon-name">Portion de frites</span>
+          <span class="addon-desc">Coupées et frites à la commande.</span>
+        </div>
+      </div>
+    </div>
+    <p class="mono-note">[ articles et prix repris du menu Super Thé — photos d'illustration issues des visuels fournis, descriptions à valider ]</p>
+  </div>
+</section>
+
+<section id="livraison" class="delivery-section">
+  <div class="wrap delivery-inner">
+    <div class="min0">
+      <span class="eyebrow">Retrait ou livraison</span>
+      <h2 class="h2 h2--tight">Vous ne voulez pas bouger&nbsp;? On vient à vous.</h2>
+      <p class="section-intro section-intro--big">Commandez en ligne, choisissez le retrait en boutique en 10 minutes ou la livraison à domicile en 30 minutes. Paiement Mobile Money ou espèces à la remise.</p>
+      <div class="delivery-actions">
+        <button type="button" id="btn-delivery-cta" class="btn-dark">Commander en livraison</button>
+        <button type="button" id="btn-pickup-cta" class="btn-outline-dark">Retirer en boutique</button>
+      </div>
+    </div>
+    <div class="delivery-steps">
+      <div class="step-card">
+        <span class="step-num">1</span>
+        <div>
+          <div class="step-title">Composez votre commande</div>
+          <div class="step-text">Cliquez sur un article, choisissez la taille et vos ajouts.</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <span class="step-num">2</span>
+        <div>
+          <div class="step-title">Retrait ou livraison</div>
+          <div class="step-text">Retrait en boutique en 10 minutes, ou livraison à domicile pour 1 000 FCFA.</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <span class="step-num">3</span>
+        <div>
+          <div class="step-title">Payez à la remise</div>
+          <div class="step-text">Mobile Money ou espèces, au comptoir comme à la porte.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="histoire" class="story-section">
+  <div class="wrap story-inner">
+    <div class="min0">
+      <span class="eyebrow eyebrow--lime">Notre histoire</span>
+      <h2 class="h2 h2--tight">Un thé sans perles, c'est comme un film sans son.</h2>
+      <p class="story-text">Super Thé est né d'une envie simple : servir le bubble tea qu'on ne trouvait pas dans le quartier. Du thé infusé, pas dilué. Des perles moelleuses, jamais tiédies depuis le matin. Un comptoir où l'on discute du niveau de sucre comme d'autres discutent de cuisson.</p>
+      <p class="story-text">Aujourd'hui l'équipe prépare chaque commande à la minute, du thé vert au sel de mer au chawarma du midi, et livre dans toute la ville.</p>
+    </div>
+    <div class="story-photos">
+      <img src="img/perles-vert.jpg" alt="Les perles dans le thé" class="story-photo" />
+      <img src="img/cup-caramel.jpg" alt="Thé au lait aux noisettes" class="story-photo story-photo--down" />
+      <img src="img/g8.jpg" alt="Super Thé et portion de frites" class="story-photo" />
+      <img src="img/p/perles.jpg" alt="Thé au lait aux perles" class="story-photo story-photo--down" />
+    </div>
+  </div>
+</section>
+
+<section id="galerie" class="gallery-section">
+  <div class="wrap">
+    <span class="eyebrow">Galerie</span>
+    <h2 class="h2 gallery-h2">Ce qu'on sert cette semaine</h2>
+    <div class="gallery-grid">
+      <img src="img/g3.jpg" alt="Thé vert au lait à la menthe" />
+      <img src="img/cup-fraise.jpg" alt="Thé au lait aux mélanges" />
+      <img src="img/p/the-fruits.jpg" alt="Thé vert aux fruits" />
+      <img src="img/g1.jpg" alt="Cliente avec un thé au lait" />
+      <img src="img/p/frites.jpg" alt="Super Thé et portion de frites" />
+      <img src="img/p/smoothies.jpg" alt="Trois smoothies Super Thé" />
+    </div>
+  </div>
+</section>
+
+<section id="boutiques" class="shops-section">
+  <div class="wrap">
+    <span class="eyebrow">Nos boutiques</span>
+    <h2 class="h2 shops-h2">Où nous trouver</h2>
+    <div class="shops-grid">
+      <div class="shop-card">
+        <h3 class="shop-name">Super Thé — boutique principale</h3>
+        <p class="shop-line">Carrefour du marché, quartier central</p>
+        <p class="shop-line shop-line--muted">Lun–Sam 9 h – 22 h · Dim 13 h – 21 h</p>
+        <p class="shop-phone">(+229) 01 55 99 57 57</p>
+        <span class="shop-status">Retrait &amp; livraison</span>
+      </div>
+      <div class="shop-card">
+        <h3 class="shop-name">Super Thé — annexe</h3>
+        <p class="shop-line">Avenue commerçante, face à la station</p>
+        <p class="shop-line shop-line--muted">Tous les jours 10 h – 21 h</p>
+        <p class="shop-phone">(+229) 01 92 11 92 92</p>
+        <span class="shop-status">Retrait sur place</span>
+      </div>
+    </div>
+    <p class="mono-note">[ adresses et horaires provisoires — numéros repris du menu ]</p>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="wrap contact-inner">
+    <div class="min0">
+      <span class="eyebrow">Contact</span>
+      <h2 class="h2 contact-h2">Une question, une grosse commande&nbsp;?</h2>
+      <p class="section-intro section-intro--big contact-intro">Anniversaires, bureaux, événements : on prépare des plateaux de 20 boissons et plus, sur commande 48 h à l'avance, livrés sur place.</p>
+      <div class="contact-links">
+        <a href="tel:+2290155995757">(+229) 01 55 99 57 57</a>
+        <a href="tel:+2290192119292">(+229) 01 92 11 92 92</a>
+        <a href="mailto:bonjour@superthe.com">bonjour@superthe.com</a>
+      </div>
+    </div>
+    <form id="contact-form" class="contact-form">
+      <label class="field-label">Nom
+        <input type="text" name="name" placeholder="Votre nom" class="field-input" required />
+      </label>
+      <label class="field-label">Téléphone
+        <input type="tel" name="phone" placeholder="(+229) …" class="field-input" required />
+      </label>
+      <label class="field-label">Message
+        <textarea name="message" rows="4" placeholder="Dites-nous tout" class="field-input field-textarea" required></textarea>
+      </label>
+      <button type="submit" id="contact-submit" class="btn-solid btn-solid--full">Envoyer</button>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="img/logo.jpg" alt="Super Thé" class="footer-logo" />
+      <span class="footer-title">Super Thé — <span class="accent-lime">La saveur unique</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="#menu">Menu</a>
+      <a href="#livraison">Livraison</a>
+      <a href="#boutiques">Boutiques</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <span class="footer-copy">© 2026 Super Thé</span>
+  </div>
+</footer>
+
+<!-- Item detail modal -->
+<div id="detail-overlay" class="overlay" hidden>
+  <div id="detail-backdrop" class="overlay-backdrop"></div>
+  <div class="detail-modal">
+    <img id="detail-photo" src="img/placeholder.svg" alt="" class="detail-photo" />
+    <div class="detail-body">
+      <div class="detail-head">
+        <div>
+          <span id="detail-cat" class="eyebrow eyebrow--lime"></span>
+          <h3 id="detail-name" class="detail-name"></h3>
+        </div>
+        <button type="button" id="detail-close" class="btn-x">×</button>
+      </div>
+      <p id="detail-desc" class="detail-desc"></p>
+      <div>
+        <div class="micro-label">Composants</div>
+        <div id="detail-parts" class="pill-row"></div>
+      </div>
+      <div>
+        <div class="micro-label">Taille</div>
+        <div id="detail-sizes" class="pill-row"></div>
+      </div>
+      <div>
+        <div class="micro-label">Ajouts</div>
+        <div id="detail-extras" class="pill-row"></div>
+      </div>
+      <button type="button" id="detail-add" class="btn-add">
+        <span>Ajouter à la commande</span><span id="detail-total" class="accent-lime"></span>
+      </button>
+      <p class="mono-note mono-note--tiny">photo d'illustration</p>
+    </div>
+  </div>
+</div>
+
+<!-- Cart drawer -->
+<div id="cart-overlay" class="overlay overlay--right" hidden>
+  <div id="cart-backdrop" class="overlay-backdrop"></div>
+  <aside class="cart-drawer">
+    <div class="cart-head">
+      <h3 class="cart-title">Ma commande</h3>
+      <button type="button" id="cart-close" class="btn-x">×</button>
+    </div>
+    <div class="mode-toggle">
+      <button type="button" id="mode-pickup" class="mode-btn">Retrait boutique</button>
+      <button type="button" id="mode-delivery" class="mode-btn">Livraison</button>
+    </div>
+    <div id="cart-lines" class="cart-lines"></div>
+    <p id="cart-empty-note" class="cart-empty-note"></p>
+    <div id="delivery-fields" class="delivery-fields" hidden>
+      <input type="text" placeholder="Adresse de livraison" class="field-input" />
+      <input type="tel" placeholder="Téléphone" class="field-input" />
+    </div>
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>Sous-total</span><span id="cart-subtotal"></span>
+      </div>
+      <div class="summary-row">
+        <span id="fee-label"></span><span id="fee-value"></span>
+      </div>
+      <div class="summary-row summary-row--total">
+        <span>Total</span><span id="cart-total"></span>
+      </div>
+      <p id="mode-note" class="mode-note"></p>
+      <button type="button" id="cart-checkout" class="btn-solid btn-solid--full"></button>
+    </div>
+  </aside>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
