@@ -258,9 +258,10 @@
       a.addEventListener("click", function () { setNav(false); });
     });
 
-    /* Repasser en grand écran doit repartir d'un état propre. */
+    /* Le seuil suit celui de la feuille de style : au-dessus, la barre
+       horizontale revient et le panneau n'a plus lieu d'etre. */
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 900) setNav(false);
+      if (window.innerWidth > 1040) setNav(false);
     });
   }
 
