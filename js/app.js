@@ -1,8 +1,6 @@
 (function () {
   "use strict";
 
-  var DELIVERY_FEE = 1000;
-
   function F(n) {
     return n.toLocaleString("fr-FR").replace(/[  ]/g, " ") + " FCFA";
   }
@@ -64,18 +62,12 @@
 
   var CATS = [
     {
-      key: "Glaces pilées",
-      note: "La dernière arrivée à la carte. Glace pilée montée à la commande, servie en grand format, dans tous les salons.",
-      items: [
-        { name: "Glace pilée simple", m: 2000, badge: "Nouveau", photo: "img/p/glace-simple.jpg", desc: "Glace pilée nappée de caramel, avec des éclats de biscuit répartis dans toute la hauteur du gobelet." },
-        { name: "Glace pilée à la menthe", m: 2200, badge: "Nouveau", photo: "img/p/glace-menthe.jpg", desc: "Menthe et éclats de biscuit noir sur glace pilée. La plus fraîche des trois, et la plus verte." },
-        { name: "Glace pilée au chocolat", m: 2500, badge: "Nouveau", photo: "img/p/glace-chocolat.jpg", desc: "Un nappage chocolat qui coule le long du gobelet, des éclats de biscuit dedans. La plus gourmande." }
-      ]
-    },
-    {
       key: "Thé au lait",
-      note: "Thé noir infusé le matin, lait entier, sucre à votre main. 500 ml ou 700 ml, chaud ou glacé.",
+      note: "Thé noir infusé le matin, lait entier, sucre à votre main. 500 ml ou 700 ml, chaud ou glacé — ou en glace pilée, servie en grand format.",
       items: [
+        { name: "Glace pilée simple", m: 2000, badge: "Nouveau", photo: "img/p/glace-simple.jpg", desc: "Le thé au lait en version glace pilée, nappé de caramel, avec des éclats de biscuit dans toute la hauteur du gobelet." },
+        { name: "Glace pilée à la menthe", m: 2200, badge: "Nouveau", photo: "img/p/glace-menthe.jpg", desc: "La même glace pilée, à la menthe, avec des éclats de biscuit noir. La plus fraîche des trois." },
+        { name: "Glace pilée au chocolat", m: 2500, badge: "Nouveau", photo: "img/p/glace-chocolat.jpg", desc: "Un nappage chocolat qui coule le long du gobelet, des éclats de biscuit dedans. La plus gourmande." },
         { name: "Super Thé — thé au lait aux perles", m: 1200, l: 1400, badge: "Le signature", photo: "img/p/lait-perles.jpg", desc: "Celui par lequel tout a commencé. Thé noir infusé, lait entier, et des perles encore tièdes au fond du gobelet." },
         { name: "Thé au lait classique", m: 1200, l: 1400, badge: "Classique", photo: "img/p/lait-classique.jpg", desc: "Rien dedans, tout dans le thé. La base sur laquelle repose le reste de la carte." },
         { name: "Thé au lait au jelly", m: 1200, l: 1400, badge: "Texture", photo: "img/p/lait-jelly.jpg", desc: "Des cubes de gelée fruitée à la place des perles : plus fermes sous la dent, plus frais en bouche." },
@@ -127,14 +119,12 @@
       note: "Le salé du midi et du soir, monté à la commande.",
       items: [
         { name: "Chawarma viande", m: 2000, badge: "Sauce maison", photo: "img/p/fastfood.jpg", desc: "Viande grillée roulée serré dans le pain, avec la sauce spéciale de la maison." },
-        { name: "Super chawarma", m: 2500, badge: "Généreux", photo: "img/p/ph-ink.jpg", desc: "Le chawarma en version double : plus de viande, des œufs, la même sauce." },
-        { name: "Hamburger royal", m: 2000, badge: "Complet", photo: "img/p/ph-lime.jpg", desc: "Viande, frites, tomate et oignon dans un pain brioché." },
+        { name: "Super chawarma", m: 2500, badge: "Généreux", photo: "img/p/super-chawarma.jpg", desc: "Le chawarma en version double : plus de viande, des œufs, la même sauce." },
+        { name: "Hamburger royal", m: 2000, badge: "Complet", photo: "img/p/hamburger-royal.jpg", desc: "Viande, frites, tomate et oignon dans un pain brioché." },
         { name: "Super hamburger", m: 3500, badge: "Le plus grand", photo: "img/p/frites-portion.jpg", desc: "Viande, œufs et une portion de frites comprise. Pour les vraies faims." }
       ]
     }
   ];
-
-  var ITEM_COUNT = CATS.reduce(function (a, c) { return a + c.items.length; }, 0);
 
   var state = {
     cat: CATS[0].key,
@@ -150,7 +140,7 @@
 
   var ui = {};
   [
-    "cart-count", "stat-item-count", "categories", "cat-note", "menu-grid",
+    "cart-count", "categories", "cat-note", "menu-grid",
     "detail-overlay", "detail-backdrop", "detail-photo", "detail-badge",
     "detail-price-from", "detail-cat", "detail-name", "detail-close",
     "detail-desc", "detail-sizes", "detail-add", "detail-total",
@@ -502,14 +492,15 @@
     ui["delivery-fields"].hidden = !isDelivery;
 
     var sub = cart.reduce(function (a, i) { return a + i.price; }, 0);
-    var fee = isDelivery && cart.length ? DELIVERY_FEE : 0;
 
     ui["cart-subtotal"].textContent = F(sub);
     ui["fee-label"].textContent = isDelivery ? "Livraison" : "Retrait en boutique";
-    ui["fee-value"].textContent = isDelivery ? F(DELIVERY_FEE) : "Gratuit";
-    ui["cart-total"].textContent = F(sub + fee);
+    /* Super Thé ne fixe pas le prix de la course : c'est le livreur qui
+       s'arrange avec le client selon le trajet. */
+    ui["fee-value"].textContent = isDelivery ? "selon le trajet" : "Gratuit";
+    ui["cart-total"].textContent = F(sub);
     ui["mode-note"].textContent = isDelivery
-      ? "Vous payez, on transmet votre numéro WhatsApp au livreur, il prend le relais."
+      ? "Vous réglez vos boissons ici. La course, vous la voyez directement avec le livreur : on lui transmet votre numéro WhatsApp."
       : "Votre commande vous attend au comptoir. Rien à payer en plus.";
     ui["cart-checkout"].textContent = isDelivery ? "Payer et envoyer" : "Valider le retrait";
   }
@@ -529,7 +520,7 @@
 
     ui["cart-checkout"].textContent = "Commande envoyée ✓";
     ui["mode-note"].textContent = state.mode === "delivery"
-      ? "C'est parti. Le livreur vous écrit sur WhatsApp."
+      ? "C'est parti. Le livreur vous écrit sur WhatsApp pour l'adresse et le prix de la course."
       : "C'est noté. Passez quand vous voulez au comptoir.";
   }
 
@@ -565,8 +556,6 @@
   /* ---------- Démarrage ---------- */
 
   function init() {
-    ui["stat-item-count"].textContent = ITEM_COUNT;
-
     initReveal();
     renderCategories();
     renderMenu();

@@ -230,23 +230,21 @@ button { font: inherit; color: inherit; }
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(251, 253, 245, 0.88);
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  background: var(--lime);
   border-bottom: 2px solid transparent;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .site-header.is-stuck {
-  border-bottom-color: var(--lime);
-  box-shadow: 0 8px 30px rgba(6, 10, 4, 0.07);
+  border-bottom-color: var(--ink);
+  box-shadow: 0 8px 30px rgba(6, 10, 4, 0.16);
 }
 
 .nav-link--new {
-  background: var(--lime);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--lime);
   font-weight: 700;
 }
-.nav-link--new:hover { background: var(--ink); color: var(--lime); }
+.nav-link--new:hover { background: var(--paper); color: var(--ink); }
 
 .header-inner {
   display: flex;
@@ -270,7 +268,7 @@ button { font: inherit; color: inherit; }
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--lime-deep);
+  color: rgba(6, 10, 4, 0.62);
 }
 
 .main-nav {
@@ -285,10 +283,10 @@ button { font: inherit; color: inherit; }
   border-radius: 999px;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--on-light-muted);
+  color: rgba(6, 10, 4, 0.68);
   transition: color 0.2s ease, background 0.2s ease;
 }
-.nav-link:hover { color: var(--on-light); background: var(--paper-2); }
+.nav-link:hover { color: var(--ink); background: rgba(6, 10, 4, 0.10); }
 
 .btn-order {
   margin-left: 10px;
@@ -334,31 +332,23 @@ button { font: inherit; color: inherit; }
    Hero
    -------------------------------------------------------------------------- */
 
+/* L'accueil est un aplat lime plein : c'est la première chose qu'on voit
+   du site, et donc la première couleur qui frappe. */
 .hero {
   position: relative;
-  background: var(--ink);
-  color: var(--on-dark);
+  background: var(--lime);
+  color: var(--ink);
   overflow: hidden;
   isolation: isolate;
-}
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -25% -10% auto -25%;
-  height: 78%;
-  background: radial-gradient(38% 46% at 26% 30%, rgba(158, 232, 23, 0.20), transparent 72%);
-  pointer-events: none;
-  z-index: -1;
 }
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(246, 248, 241, 0.16) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(6, 10, 4, 0.20) 1px, transparent 1px);
   background-size: 30px 30px;
-  opacity: 0.5;
-  mask-image: linear-gradient(to bottom, black, transparent 72%);
-  -webkit-mask-image: linear-gradient(to bottom, black, transparent 72%);
+  mask-image: radial-gradient(80% 70% at 78% 28%, black, transparent 76%);
+  -webkit-mask-image: radial-gradient(80% 70% at 78% 28%, black, transparent 76%);
   pointer-events: none;
   z-index: -1;
 }
@@ -378,8 +368,8 @@ button { font: inherit; color: inherit; }
   gap: 9px;
   padding: 8px 16px 8px 10px;
   border-radius: 999px;
-  background: rgba(246, 248, 241, 0.07);
-  box-shadow: inset 0 0 0 1px var(--line-dark);
+  background: var(--ink);
+  box-shadow: none;
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--on-dark-muted);
@@ -389,7 +379,7 @@ button { font: inherit; color: inherit; }
   height: 8px;
   border-radius: 50%;
   background: var(--lime);
-  box-shadow: 0 0 0 4px rgba(158, 232, 23, 0.18);
+  box-shadow: 0 0 0 4px rgba(158, 232, 23, 0.22);
   animation: pulse 2.4s ease-in-out infinite;
 }
 @keyframes pulse {
@@ -406,18 +396,14 @@ button { font: inherit; color: inherit; }
   margin: 26px 0 0;
   text-wrap: balance;
 }
-.hero-title .gradient {
-  background: linear-gradient(100deg, var(--lime-hi), var(--lime) 45%, var(--amber));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+/* Sur l'aplat lime, le mot accentué passe en blanc cassé. */
+.hero-title .gradient { color: var(--paper); }
 
 .hero-desc {
   margin: 24px 0 0;
   font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
   line-height: 1.6;
-  color: var(--on-dark-muted);
+  color: rgba(6, 10, 4, 0.74);
   max-width: 46ch;
 }
 
@@ -430,11 +416,11 @@ button { font: inherit; color: inherit; }
   margin-top: 46px;
 }
 .stat {
-  flex: 1 1 140px;
+  flex: 1 1 160px;
   padding: 16px 18px;
   border-radius: var(--r-md);
-  background: rgba(246, 248, 241, 0.05);
-  box-shadow: inset 0 0 0 1px var(--line-dark);
+  background: var(--ink);
+  box-shadow: none;
 }
 .stat-num {
   font-family: var(--display);
@@ -450,6 +436,7 @@ button { font: inherit; color: inherit; }
   line-height: 1.4;
   color: var(--on-dark-faint);
 }
+.stat-num { font-size: clamp(1.25rem, 2.2vw, 1.75rem); }
 
 .hero-photos {
   position: relative;
@@ -505,7 +492,7 @@ button { font: inherit; color: inherit; }
   white-space: nowrap;
 }
 .hero-tag--1 { left: 0; bottom: 16%; animation: floaty 6s ease-in-out infinite 0.4s; }
-.hero-tag--2 { right: 2%; top: 10%; background: var(--lime); animation: floaty 6s ease-in-out infinite 2s; }
+.hero-tag--2 { right: 2%; top: 10%; background: var(--ink); color: var(--on-dark); animation: floaty 6s ease-in-out infinite 2s; }
 
 /* --------------------------------------------------------------------------
    Nouveauté : les glaces pilées
