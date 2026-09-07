@@ -34,8 +34,8 @@
         { name: "Thé vert à la mangue", m: 1300, l: 1500, badge: "Best-seller", photo: "img/p/vert-mangue.jpg", desc: "De la mangue mûre mixée dans le thé glacé. La boisson la plus solaire de la carte." },
         { name: "Thé vert à l'ananas", m: 1300, l: 1500, badge: "Acidulé", photo: "img/p/the-fruits.jpg", desc: "Ananas frais coupé au comptoir, morceaux compris. Acidité franche, très peu de sucre." },
         { name: "Thé vert passion-ananas", m: 1300, l: 1500, badge: "Duo tropical", photo: "img/p/vert-cocktail-3.jpg", desc: "La passion apporte l'acidité, l'ananas le sucre. Les grains restent dans le verre, c'est voulu." },
-        { name: "Thé vert au citron", m: 1200, l: 1400, badge: "Désaltérant", photo: "img/p/ph-cream.jpg", desc: "Citron pressé à la minute. Le plus léger et le moins cher des thés aux fruits." },
-        { name: "Thé vert citron et sel de mer", m: 1300, l: 1500, badge: "Sucré-salé", photo: "img/p/ph-lime.jpg", desc: "Une pointe de sel de mer sur le citron pressé. Surprenant au premier verre, addictif au deuxième." },
+        { name: "Thé vert au citron", m: 1200, l: 1400, badge: "Désaltérant", photo: "img/p/vert-citron.jpg", desc: "Citron pressé à la minute. Le plus léger et le moins cher des thés aux fruits." },
+        { name: "Thé vert citron et sel de mer", m: 1300, l: 1500, badge: "Sucré-salé", photo: "img/p/vert-citron-sel.jpg", desc: "Une pointe de sel de mer sur le citron pressé. Surprenant au premier verre, addictif au deuxième." },
         { name: "Cocktail thé vert aux fruits", m: 1300, l: 1500, badge: "Cocktail", photo: "img/p/vert-cocktail.jpg", desc: "Mangue, ananas et passion réunis dans le même gobelet. Sans alcool, sans compromis." }
       ]
     },
@@ -52,17 +52,17 @@
       key: "Café",
       note: "Préparé à la machine, chaud ou glacé, sur place ou à emporter.",
       items: [
-        { name: "Americano", m: 1500, badge: "Long", photo: "img/p/ph-ink.jpg", desc: "Un expresso allongé à l'eau chaude. Long, corsé, sans lait." },
-        { name: "Expresso", m: 2000, badge: "Serré", photo: "img/p/ph-ink.jpg", desc: "Servi court, double dose de café. Pour ceux qui savent pourquoi ils sont là." },
-        { name: "Latte", m: 2000, badge: "Doux", photo: "img/p/ph-cream.jpg", desc: "Expresso noyé de lait chaud, mousse fine sur le dessus." },
-        { name: "Latte noisette, vanille ou menthe", m: 2000, badge: "3 parfums", photo: "img/p/ph-lime.jpg", desc: "Le latte avec le sirop de votre choix. Précisez-le à la commande." }
+        { name: "Americano", m: 1500, badge: "Long", photo: "img/p/cafe-americano.jpg", desc: "Un expresso allongé à l'eau chaude. Long, corsé, sans lait." },
+        { name: "Expresso", m: 2000, badge: "Serré", photo: "img/p/cafe-expresso.jpg", desc: "Servi court, double dose de café. Pour ceux qui savent pourquoi ils sont là." },
+        { name: "Latte", m: 2000, badge: "Doux", photo: "img/p/cafe-latte.jpg", desc: "Expresso noyé de lait chaud, mousse fine sur le dessus." },
+        { name: "Latte noisette, vanille ou menthe", m: 2000, badge: "3 parfums", photo: "img/p/cafe-latte-parfume.jpg", desc: "Le latte avec le sirop de votre choix. Précisez-le à la commande." }
       ]
     },
     {
       key: "Pâtisseries",
       note: "Cuites au moment, à prendre avec la boisson.",
       items: [
-        { name: "Gaufre simple", m: 1200, badge: "Chaud", photo: "img/p/ph-cream.jpg", desc: "Croustillante dehors, moelleuse dedans. Elle sort du gaufrier quand vous commandez." }
+        { name: "Gaufre simple", m: 1200, badge: "Chaud", photo: "img/p/gaufre.jpg", desc: "Croustillante dehors, moelleuse dedans. Elle sort du gaufrier quand vous commandez." }
       ]
     },
     {
