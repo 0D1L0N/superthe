@@ -23,7 +23,7 @@
         <span class="brand-tag">La saveur unique</span>
       </span>
     </a>
-    <nav class="main-nav">
+    <nav class="main-nav" id="main-nav">
       <a href="#nouveaute" class="nav-link nav-link--new">Nouveau</a>
       <a href="#menu" class="nav-link">Menu</a>
       <a href="#commander" class="nav-link">Commander</a>
@@ -31,11 +31,18 @@
       <a href="#galerie" class="nav-link">Galerie</a>
       <a href="#boutiques" class="nav-link">Boutiques</a>
       <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="header-actions">
       <button type="button" id="btn-open-cart" class="btn-order">
-        Commander
+        <span class="btn-order-text">Commander</span>
         <span id="cart-count" class="cart-count">0</span>
       </button>
-    </nav>
+      <button type="button" id="nav-toggle" class="nav-toggle"
+              aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
   </div>
 </header>
 

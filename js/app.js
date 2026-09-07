@@ -151,7 +151,7 @@
     "fee-label", "fee-value", "cart-total", "mode-note", "cart-checkout",
     "btn-open-cart", "btn-delivery-cta", "btn-pickup-cta", "btn-hero-delivery",
     "contact-form", "contact-submit", "site-header", "d-address", "d-whatsapp",
-    "shops-grid"
+    "shops-grid", "nav-toggle", "main-nav"
   ].forEach(function (id) {
     ui[id] = el(id);
   });
@@ -237,6 +237,30 @@
       card.addEventListener("click", function () { openItem(item, active.key); });
       ui["menu-grid"].appendChild(card);
       observeReveal(card);
+    });
+  }
+
+  /* ---------- Menu de navigation (mobile) ---------- */
+
+  function setNav(open) {
+    ui["main-nav"].classList.toggle("is-open", open);
+    ui["nav-toggle"].setAttribute("aria-expanded", open ? "true" : "false");
+    ui["nav-toggle"].setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+  }
+
+  function initNav() {
+    ui["nav-toggle"].addEventListener("click", function () {
+      setNav(ui["nav-toggle"].getAttribute("aria-expanded") !== "true");
+    });
+
+    /* Le panneau se referme dès qu'on part vers une section. */
+    Array.prototype.forEach.call(ui["main-nav"].querySelectorAll(".nav-link"), function (a) {
+      a.addEventListener("click", function () { setNav(false); });
+    });
+
+    /* Repasser en grand écran doit repartir d'un état propre. */
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 900) setNav(false);
     });
   }
 
@@ -406,20 +430,51 @@
     ui["extras-open"].setAttribute("aria-expanded", "false");
   }
 
+  /* Deux lignes identiques (même article, même format, mêmes ajouts) doivent
+     se regrouper en une seule ligne avec une quantité. */
+  function lineKey(line) {
+    return line.name + "|" + line.sizeLabel + "|" + line.extras.slice().sort().join(",");
+  }
+
   function addDetailToCart() {
     var d = state.detail;
     if (!d) return;
-    state.cart.push({
+
+    var line = {
       name: d.name,
       photo: d.photo,
       price: detailPrice(),
       sizeLabel: d.l ? (state.size === "l" ? "700 ml" : "500 ml") : "portion",
-      extras: state.extras.slice()
-    });
+      extras: state.extras.slice(),
+      qty: 1
+    };
+
+    var key = lineKey(line);
+    var existing = null;
+    for (var i = 0; i < state.cart.length; i++) {
+      if (lineKey(state.cart[i]) === key) { existing = state.cart[i]; break; }
+    }
+
+    if (existing) existing.qty += 1;
+    else state.cart.push(line);
+
     closeDetail();
     bumpCount();
     openCart();
     renderCart();
+  }
+
+  /* Descendre sous 1 retire la ligne. */
+  function changeQty(index, delta) {
+    var line = state.cart[index];
+    if (!line) return;
+    line.qty += delta;
+    if (line.qty < 1) state.cart.splice(index, 1);
+    renderCart();
+  }
+
+  function cartCount() {
+    return state.cart.reduce(function (a, l) { return a + l.qty; }, 0);
   }
 
   /* ---------- Panier ---------- */
@@ -447,14 +502,9 @@
     renderCart();
   }
 
-  function removeLine(i) {
-    state.cart.splice(i, 1);
-    renderCart();
-  }
-
   function renderCart() {
     var cart = state.cart;
-    ui["cart-count"].textContent = cart.length;
+    ui["cart-count"].textContent = cartCount();
 
     ui["mode-pickup"].className = "mode-btn" + (state.mode === "pickup" ? " is-active" : "");
     ui["mode-delivery"].className = "mode-btn" + (state.mode === "delivery" ? " is-active" : "");
@@ -470,17 +520,32 @@
     } else {
       cart.forEach(function (line, i) {
         var detail = line.sizeLabel + (line.extras.length ? " · " + line.extras.join(", ") : "");
+        var minusLabel = line.qty > 1
+          ? "Retirer un " + line.name
+          : "Retirer " + line.name + " de la commande";
+
         var row = document.createElement("div");
         row.className = "cart-line";
         row.innerHTML =
           '<span class="cart-line-photo"><img src="' + line.photo + '" alt="" /></span>' +
-          '<span class="cart-line-info">' +
+          '<span class="cart-line-body">' +
             '<span class="cart-line-name">' + escapeHtml(line.name) + "</span>" +
             '<span class="cart-line-detail">' + escapeHtml(detail) + "</span>" +
-          "</span>" +
-          '<span class="cart-line-price">' + F(line.price) + "</span>" +
-          '<button type="button" class="btn-remove" aria-label="Retirer ' + escapeHtml(line.name) + '">−</button>';
-        row.querySelector(".btn-remove").addEventListener("click", function () { removeLine(i); });
+            '<span class="cart-line-foot">' +
+              '<span class="qty">' +
+                '<button type="button" class="qty-btn" data-delta="-1" aria-label="' + escapeHtml(minusLabel) + '">−</button>' +
+                '<span class="qty-val">' + line.qty + "</span>" +
+                '<button type="button" class="qty-btn" data-delta="1" aria-label="Ajouter un ' + escapeHtml(line.name) + '">+</button>' +
+              "</span>" +
+              '<span class="cart-line-price">' + F(line.price * line.qty) + "</span>" +
+            "</span>" +
+          "</span>";
+
+        Array.prototype.forEach.call(row.querySelectorAll(".qty-btn"), function (btn) {
+          btn.addEventListener("click", function () {
+            changeQty(i, parseInt(btn.getAttribute("data-delta"), 10));
+          });
+        });
         ui["cart-lines"].appendChild(row);
       });
     }
@@ -488,7 +553,7 @@
     var isDelivery = state.mode === "delivery";
     ui["delivery-fields"].hidden = !isDelivery;
 
-    var sub = cart.reduce(function (a, i) { return a + i.price; }, 0);
+    var sub = cart.reduce(function (a, l) { return a + l.price * l.qty; }, 0);
 
     ui["cart-subtotal"].textContent = F(sub);
     ui["fee-label"].textContent = isDelivery ? "Livraison" : "Retrait en boutique";
@@ -554,6 +619,7 @@
 
   function init() {
     initReveal();
+    initNav();
     renderCategories();
     renderMenu();
     renderShops();
@@ -594,7 +660,8 @@
       if (e.key !== "Escape") return;
       if (!ui["extras-popover"].hidden) { closeExtras(); return; }
       if (!ui["detail-overlay"].hidden) { closeDetail(); return; }
-      if (!ui["cart-overlay"].hidden) closeCart();
+      if (!ui["cart-overlay"].hidden) { closeCart(); return; }
+      if (ui["main-nav"].classList.contains("is-open")) setNav(false);
     });
 
     var onScroll = function () {
