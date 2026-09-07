@@ -230,21 +230,16 @@ button { font: inherit; color: inherit; }
   position: sticky;
   top: 0;
   z-index: 60;
-  background: var(--lime);
-  border-bottom: 2px solid transparent;
+  background: rgba(251, 253, 245, 0.9);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid transparent;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .site-header.is-stuck {
-  border-bottom-color: var(--ink);
-  box-shadow: 0 8px 30px rgba(6, 10, 4, 0.16);
+  border-bottom-color: var(--line-light);
+  box-shadow: 0 8px 30px rgba(6, 10, 4, 0.06);
 }
-
-.nav-link--new {
-  background: var(--ink);
-  color: var(--lime);
-  font-weight: 700;
-}
-.nav-link--new:hover { background: var(--paper); color: var(--ink); }
 
 .header-inner {
   display: flex;
@@ -263,6 +258,15 @@ button { font: inherit; color: inherit; }
   font-size: 1.3rem;
   letter-spacing: -0.03em;
 }
+
+/* La feuille de l'identité Super Thé, posée sur le nom. */
+.leaf {
+  fill: var(--lime);
+  margin-left: 3px;
+  vertical-align: 0.42em;
+  rotate: -12deg;
+}
+.footer-title .leaf { width: 11px; height: 11px; }
 .brand-tag {
   font-size: 0.625rem;
   font-weight: 700;
@@ -286,7 +290,15 @@ button { font: inherit; color: inherit; }
   color: rgba(6, 10, 4, 0.68);
   transition: color 0.2s ease, background 0.2s ease;
 }
-.nav-link:hover { color: var(--ink); background: rgba(6, 10, 4, 0.10); }
+.nav-link:hover { color: var(--ink); background: var(--paper-2); }
+
+/* Placee apres .nav-link : sinon la couleur de base l'emporte. */
+.nav-link--new {
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 700;
+}
+.nav-link--new:hover { background: var(--ink); color: var(--lime); }
 
 .btn-order {
   margin-left: 10px;
@@ -332,12 +344,13 @@ button { font: inherit; color: inherit; }
    Hero
    -------------------------------------------------------------------------- */
 
-/* L'accueil est un aplat lime plein : c'est la première chose qu'on voit
-   du site, et donc la première couleur qui frappe. */
+/* Fond clair : le lime frappe par contraste, en grandes touches (le mot
+   surligné, le panneau derrière les photos, le bouton), pas en aplat
+   plein écran — qui saturait l'œil. */
 .hero {
   position: relative;
-  background: var(--lime);
-  color: var(--ink);
+  background: var(--paper);
+  color: var(--on-light);
   overflow: hidden;
   isolation: isolate;
 }
@@ -345,10 +358,10 @@ button { font: inherit; color: inherit; }
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(6, 10, 4, 0.20) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(6, 10, 4, 0.11) 1px, transparent 1px);
   background-size: 30px 30px;
-  mask-image: radial-gradient(80% 70% at 78% 28%, black, transparent 76%);
-  -webkit-mask-image: radial-gradient(80% 70% at 78% 28%, black, transparent 76%);
+  mask-image: radial-gradient(70% 60% at 20% 25%, black, transparent 74%);
+  -webkit-mask-image: radial-gradient(70% 60% at 20% 25%, black, transparent 74%);
   pointer-events: none;
   z-index: -1;
 }
@@ -396,8 +409,16 @@ button { font: inherit; color: inherit; }
   margin: 26px 0 0;
   text-wrap: balance;
 }
-/* Sur l'aplat lime, le mot accentué passe en blanc cassé. */
-.hero-title .gradient { color: var(--paper); }
+/* Le mot accentué est surligné au lime, comme au marqueur : c'est la
+   plus grosse tache de couleur de la page, et elle reste lisible. */
+.hero-title .gradient {
+  display: inline-block;
+  padding: 0.02em 0.16em 0.08em;
+  border-radius: 10px;
+  background: var(--lime);
+  color: var(--ink);
+  rotate: -1.2deg;
+}
 
 .hero-desc {
   margin: 24px 0 0;
@@ -446,8 +467,19 @@ button { font: inherit; color: inherit; }
   align-items: center;
   min-height: 460px;
 }
+/* Panneau lime derrière les photos : la deuxième grande touche de couleur. */
+.hero-photos::before {
+  content: "";
+  position: absolute;
+  inset: 10% 2% 8% 4%;
+  background: var(--lime);
+  border-radius: var(--r-xl);
+  rotate: -2deg;
+  z-index: 0;
+}
 .hero-photo {
   position: absolute;
+  z-index: 1;
   width: 62%;
   max-width: 300px;
   aspect-ratio: 3 / 4;
@@ -480,7 +512,7 @@ button { font: inherit; color: inherit; }
 
 .hero-tag {
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   padding: 10px 16px;
   border-radius: 999px;
   background: var(--paper);
