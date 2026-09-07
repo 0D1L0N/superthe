@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="icon" href="img/logo.jpg">
+<link rel="icon" href="img/mark.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
 <header class="site-header">
   <div class="wrap header-inner">
     <a href="#top" class="brand">
-      <img src="img/logo.jpg" alt="Super Thé" class="brand-logo" />
+      <img src="img/mark.png" alt="Super Thé" class="brand-logo" />
       <span class="brand-text">
         <span class="brand-name">Super Thé</span>
         <span class="brand-tag">La saveur unique</span>
@@ -54,8 +54,8 @@
       </div>
     </div>
     <div class="hero-photos">
-      <img src="img/g1.jpg" alt="Cliente avec un thé au lait Super Thé" class="hero-photo hero-photo-1" />
-      <img src="img/g2.jpg" alt="Cliente avec un thé vert au lait à la menthe" class="hero-photo hero-photo-2" />
+      <img src="img/hero-1.jpg" alt="Cliente avec un thé au lait aux perles" class="hero-photo hero-photo-1" />
+      <img src="img/hero-2.jpg" alt="Cliente avec un thé vert au lait à la menthe" class="hero-photo hero-photo-2" />
     </div>
   </div>
 </section>
@@ -164,10 +164,10 @@
       <p class="story-text">Aujourd'hui l'équipe prépare chaque commande à la minute, du thé vert au sel de mer au chawarma du midi, et livre dans toute la ville.</p>
     </div>
     <div class="story-photos">
-      <img src="img/perles-vert.jpg" alt="Les perles dans le thé" class="story-photo" />
-      <img src="img/cup-caramel.jpg" alt="Thé au lait aux noisettes" class="story-photo story-photo--down" />
-      <img src="img/g8.jpg" alt="Super Thé et portion de frites" class="story-photo" />
-      <img src="img/p/perles.jpg" alt="Thé au lait aux perles" class="story-photo story-photo--down" />
+      <img src="img/boutique.jpg" alt="Le comptoir Super Thé" class="story-photo" />
+      <img src="img/glace-perles.jpg" alt="Thé au lait aux perles sur glace" class="story-photo story-photo--down" />
+      <img src="img/quote-perles.jpg" alt="Les perles dans le thé" class="story-photo" />
+      <img src="img/p/lait-melanges.jpg" alt="Thé au lait aux mélanges" class="story-photo story-photo--down" />
     </div>
   </div>
 </section>
@@ -177,12 +177,12 @@
     <span class="eyebrow">Galerie</span>
     <h2 class="h2 gallery-h2">Ce qu'on sert cette semaine</h2>
     <div class="gallery-grid">
-      <img src="img/g3.jpg" alt="Thé vert au lait à la menthe" />
-      <img src="img/cup-fraise.jpg" alt="Thé au lait aux mélanges" />
-      <img src="img/p/the-fruits.jpg" alt="Thé vert aux fruits" />
-      <img src="img/g1.jpg" alt="Cliente avec un thé au lait" />
-      <img src="img/p/frites.jpg" alt="Super Thé et portion de frites" />
-      <img src="img/p/smoothies.jpg" alt="Trois smoothies Super Thé" />
+      <img src="img/g-portrait.jpg" alt="Cliente avec un thé au lait aux mélanges" />
+      <img src="img/p/lait-menthe.jpg" alt="Thé vert au lait à la menthe" />
+      <img src="img/p/smoothie-mangue.jpg" alt="Smoothie à la mangue" />
+      <img src="img/g-portrait-2.jpg" alt="Cliente avec un thé vert au lait" />
+      <img src="img/p/frites-portion.jpg" alt="Portion de frites Super Thé" />
+      <img src="img/p/vert-cocktail-3.jpg" alt="Thés verts aux fruits" />
     </div>
   </div>
 </section>
@@ -241,7 +241,7 @@
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div class="footer-brand">
-      <img src="img/logo.jpg" alt="Super Thé" class="footer-logo" />
+      <img src="img/mark-white.png" alt="Super Thé" class="footer-logo" />
       <span class="footer-title">Super Thé — <span class="accent-lime">La saveur unique</span></span>
     </div>
     <div class="footer-links">
@@ -257,33 +257,38 @@
 <!-- Item detail modal -->
 <div id="detail-overlay" class="overlay" hidden>
   <div id="detail-backdrop" class="overlay-backdrop"></div>
-  <div class="detail-modal">
-    <img id="detail-photo" src="img/placeholder.svg" alt="" class="detail-photo" />
-    <div class="detail-body">
-      <div class="detail-head">
-        <div>
-          <span id="detail-cat" class="eyebrow eyebrow--lime"></span>
-          <h3 id="detail-name" class="detail-name"></h3>
-        </div>
-        <button type="button" id="detail-close" class="btn-x">×</button>
+  <div class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detail-name">
+    <div class="detail-media">
+      <img id="detail-photo" src="img/placeholder.svg" alt="" class="detail-photo" />
+      <span id="detail-badge" class="detail-badge"></span>
+      <div class="detail-media-foot">
+        <span id="detail-cat" class="detail-cat"></span>
+        <span id="detail-price-from" class="detail-price-from"></span>
       </div>
+    </div>
+    <div class="detail-body">
+      <button type="button" id="detail-close" class="btn-x" aria-label="Fermer">×</button>
+      <h3 id="detail-name" class="detail-name"></h3>
       <p id="detail-desc" class="detail-desc"></p>
-      <div>
+      <div class="detail-block">
         <div class="micro-label">Composants</div>
         <div id="detail-parts" class="pill-row"></div>
       </div>
-      <div>
+      <div class="detail-block">
         <div class="micro-label">Taille</div>
-        <div id="detail-sizes" class="pill-row"></div>
+        <div id="detail-sizes" class="size-row"></div>
       </div>
-      <div>
+      <div class="detail-block">
         <div class="micro-label">Ajouts</div>
         <div id="detail-extras" class="pill-row"></div>
       </div>
-      <button type="button" id="detail-add" class="btn-add">
-        <span>Ajouter à la commande</span><span id="detail-total" class="accent-lime"></span>
-      </button>
-      <p class="mono-note mono-note--tiny">photo d'illustration</p>
+      <div class="detail-foot">
+        <div class="detail-total-wrap">
+          <span class="micro-label">Total</span>
+          <span id="detail-total" class="detail-total"></span>
+        </div>
+        <button type="button" id="detail-add" class="btn-add">Ajouter à la commande</button>
+      </div>
     </div>
   </div>
 </div>

@@ -16,60 +16,60 @@
       key: "Thé au lait",
       note: "500 ml ou 700 ml, chaud ou glacé. Base thé infusé le matin, lait entier, sucre ajustable.",
       items: [
-        { name: "SUPER THÉ (thé au lait aux perles)", m: 1200, l: 1400, badge: "Le signature", photo: "img/p/perles.jpg", desc: "La recette maison : thé noir infusé, lait entier et perles de tapioca cuites toutes les deux heures, encore tièdes au fond du gobelet.", parts: ["Thé noir", "Lait entier", "Perles de tapioca", "Sucre de canne", "Glace"] },
-        { name: "Thé au lait classique", m: 1200, l: 1400, badge: "Classique", photo: "img/cup-caramel.jpg", desc: "Le thé au lait sans topping, tout en douceur. La base de tout le reste de la carte.", parts: ["Thé noir", "Lait entier", "Sucre de canne", "Glace"] },
-        { name: "Thé au lait aux jellys", m: 1200, l: 1400, badge: "Texture", photo: "img/placeholder.svg", desc: "Cubes de gelée fruitée à la place des perles : plus fermes, plus frais sous la dent.", parts: ["Thé noir", "Lait entier", "Jelly fruité", "Glace"] },
-        { name: "Thé au lait au flans de mangue", m: 1200, l: 1400, badge: "Gourmand", photo: "img/placeholder.svg", desc: "Flan à la mangue préparé le matin, texture crème renversée qui fond dans le thé.", parts: ["Thé noir", "Lait entier", "Flan mangue", "Purée de mangue"] },
-        { name: "Thé au lait aux mélanges", m: 1200, l: 1400, badge: "Tout dedans", photo: "img/cup-fraise.jpg", desc: "Perles, jelly et flan dans le même gobelet, pour ceux qui n'arrivent pas à choisir.", parts: ["Thé noir", "Lait entier", "Perles", "Jelly", "Flan mangue"] },
-        { name: "Thé vert au lait au menthe", m: 1200, l: 1400, badge: "Très frais", photo: "img/g3.jpg", desc: "Menthe fraîche pilée dans le thé vert au lait : plus végétal, finale glaciale.", parts: ["Thé vert jasmin", "Lait entier", "Menthe fraîche", "Glace"] }
+        { name: "Super Thé — thé au lait aux perles", m: 1200, l: 1400, badge: "Le signature", photo: "img/p/lait-perles.jpg", desc: "La recette maison : thé noir infusé, lait entier et perles de tapioca cuites toutes les deux heures, encore tièdes au fond du gobelet.", parts: ["Thé noir", "Lait entier", "Perles de tapioca", "Sucre de canne", "Glace"] },
+        { name: "Thé au lait classique", m: 1200, l: 1400, badge: "Classique", photo: "img/p/lait-classique.jpg", desc: "Le thé au lait sans topping, tout en douceur. La base de tout le reste de la carte.", parts: ["Thé noir", "Lait entier", "Sucre de canne", "Glace"] },
+        { name: "Thé au lait au jelly", m: 1200, l: 1400, badge: "Texture", photo: "img/p/lait-jelly.jpg", desc: "Cubes de gelée fruitée à la place des perles : plus fermes, plus frais sous la dent.", parts: ["Thé noir", "Lait entier", "Jelly fruité", "Glace"] },
+        { name: "Thé au lait au flan de mangue", m: 1200, l: 1400, badge: "Gourmand", photo: "img/p/lait-flan-mangue.jpg", desc: "Flan à la mangue préparé le matin, texture crème renversée qui fond dans le thé.", parts: ["Thé noir", "Lait entier", "Flan mangue", "Purée de mangue"] },
+        { name: "Thé au lait aux mélanges", m: 1200, l: 1400, badge: "Tout dedans", photo: "img/p/lait-melanges.jpg", desc: "Perles, jelly et flan dans le même gobelet, pour ceux qui n'arrivent pas à choisir.", parts: ["Thé noir", "Lait entier", "Perles", "Jelly", "Flan mangue"] },
+        { name: "Thé vert au lait à la menthe", m: 1200, l: 1400, badge: "Très frais", photo: "img/p/lait-menthe.jpg", desc: "Menthe fraîche pilée dans le thé vert au lait : plus végétal, finale glaciale.", parts: ["Thé vert jasmin", "Lait entier", "Menthe fraîche", "Glace"] }
       ]
     },
     {
       key: "Thé vert aux fruits",
       note: "500 ml ou 700 ml, chaud ou glacé. Thé vert jasmin et fruits frais, sans lait.",
       items: [
-        { name: "Thé vert à la mangue", m: 1300, l: 1500, badge: "Best-seller", photo: "img/p/the-fruits.jpg", desc: "Mangue mûre mixée dans le thé vert glacé, la version la plus solaire de la carte.", parts: ["Thé vert jasmin", "Mangue fraîche", "Glace"] },
+        { name: "Thé vert à la mangue", m: 1300, l: 1500, badge: "Best-seller", photo: "img/p/vert-mangue.jpg", desc: "Mangue mûre mixée dans le thé vert glacé, la version la plus solaire de la carte.", parts: ["Thé vert jasmin", "Mangue fraîche", "Glace"] },
         { name: "Thé vert à l'ananas", m: 1300, l: 1500, badge: "Acidulé", photo: "img/p/the-fruits.jpg", desc: "Ananas frais coupé au comptoir, morceaux compris. Acidité franche, peu sucré.", parts: ["Thé vert jasmin", "Ananas frais", "Glace"] },
-        { name: "Thé vert au fruit de la passion et à l'ananas", m: 1300, l: 1500, badge: "Duo tropical", photo: "img/p/the-fruits.jpg", desc: "La passion pour l'acidité, l'ananas pour le sucre. Les grains de passion restent dans le verre.", parts: ["Thé vert jasmin", "Pulpe de passion", "Ananas frais", "Glace"] },
-        { name: "Thé vert au citron", m: 1200, l: 1400, badge: "Désaltérant", photo: "img/placeholder.svg", desc: "Citron pressé minute dans le thé vert : le plus léger et le moins cher des thés fruités.", parts: ["Thé vert jasmin", "Citron pressé", "Glace"] },
-        { name: "Thé vert au citron et au sel de mer", m: 1300, l: 1500, badge: "Sucré-salé", photo: "img/placeholder.svg", desc: "Citron pressé relevé d'une pointe de sel de mer. L'équilibre qui fait revenir.", parts: ["Thé vert jasmin", "Citron pressé", "Sel de mer", "Glace"] },
-        { name: "Thé vert aux fruits (cocktail)", m: 1300, l: 1500, badge: "Cocktail", photo: "img/p/the-fruits.jpg", desc: "Mangue, ananas et passion réunis dans le même gobelet. Sans alcool.", parts: ["Thé vert jasmin", "Mangue", "Ananas", "Passion"] }
+        { name: "Thé vert passion-ananas", m: 1300, l: 1500, badge: "Duo tropical", photo: "img/p/vert-cocktail-3.jpg", desc: "La passion pour l'acidité, l'ananas pour le sucre. Les grains de passion restent dans le verre.", parts: ["Thé vert jasmin", "Pulpe de passion", "Ananas frais", "Glace"] },
+        { name: "Thé vert au citron", m: 1200, l: 1400, badge: "Désaltérant", photo: "img/p/ph-cream.jpg", desc: "Citron pressé minute dans le thé vert : le plus léger et le moins cher des thés fruités.", parts: ["Thé vert jasmin", "Citron pressé", "Glace"] },
+        { name: "Thé vert au citron et au sel de mer", m: 1300, l: 1500, badge: "Sucré-salé", photo: "img/p/ph-lime.jpg", desc: "Citron pressé relevé d'une pointe de sel de mer. L'équilibre qui fait revenir.", parts: ["Thé vert jasmin", "Citron pressé", "Sel de mer", "Glace"] },
+        { name: "Cocktail thé vert aux fruits", m: 1300, l: 1500, badge: "Cocktail", photo: "img/p/vert-cocktail.jpg", desc: "Mangue, ananas et passion réunis dans le même gobelet. Sans alcool.", parts: ["Thé vert jasmin", "Mangue", "Ananas", "Passion"] }
       ]
     },
     {
       key: "Smoothies",
       note: "Petit ou grand format. Fruits entiers mixés à la commande avec du lait glacé, aucune poudre.",
       items: [
-        { name: "Smoothie à la mangue", m: 1400, l: 1500, badge: "Épais", photo: "img/p/smoothies.jpg", desc: "Mangue et lait glacé mixés serré, texture à la cuillère.", parts: ["Mangue fraîche", "Lait glacé", "Glace pilée"] },
+        { name: "Smoothie à la mangue", m: 1400, l: 1500, badge: "Épais", photo: "img/p/smoothie-mangue.jpg", desc: "Mangue et lait glacé mixés serré, texture à la cuillère.", parts: ["Mangue fraîche", "Lait glacé", "Glace pilée"] },
         { name: "Smoothie à l'ananas", m: 1400, l: 1500, badge: "Vif", photo: "img/p/smoothies.jpg", desc: "Ananas frais mixé, mousse légère et acidité vive.", parts: ["Ananas frais", "Lait glacé", "Glace pilée"] },
-        { name: "Smoothie à la banane", m: 1400, l: 1500, badge: "Rassasiant", photo: "img/p/smoothies.jpg", desc: "Banane bien mûre et lait glacé : le plus nourrissant du lot.", parts: ["Banane", "Lait glacé", "Glace pilée"] }
+        { name: "Smoothie à la banane", m: 1400, l: 1500, badge: "Rassasiant", photo: "img/p/smoothie-banane.jpg", desc: "Banane bien mûre et lait glacé : le plus nourrissant du lot.", parts: ["Banane", "Lait glacé", "Glace pilée"] }
       ]
     },
     {
       key: "Café",
       note: "Chaud ou glacé, préparé à la machine, à emporter ou sur place.",
       items: [
-        { name: "Americana", m: 1500, badge: "Long", photo: "img/placeholder.svg", desc: "Expresso allongé à l'eau chaude : long, corsé, sans lait.", parts: ["Café en grains", "Eau chaude"] },
-        { name: "Expresso", m: 2000, badge: "Serré", photo: "img/placeholder.svg", desc: "Servi court, double dose de café.", parts: ["Café en grains", "Eau"] },
-        { name: "Latté", m: 2000, badge: "Doux", photo: "img/placeholder.svg", desc: "Expresso noyé de lait chaud, mousse fine sur le dessus.", parts: ["Expresso", "Lait chaud", "Mousse de lait"] },
-        { name: "Latte aux noisettes / vanilles / menthes", m: 2000, badge: "3 parfums", photo: "img/placeholder.svg", desc: "Le latté avec le sirop de votre choix : noisette, vanille ou menthe. À préciser à la commande.", parts: ["Expresso", "Lait chaud", "Sirop au choix"] }
+        { name: "Americano", m: 1500, badge: "Long", photo: "img/p/ph-ink.jpg", desc: "Expresso allongé à l'eau chaude : long, corsé, sans lait.", parts: ["Café en grains", "Eau chaude"] },
+        { name: "Expresso", m: 2000, badge: "Serré", photo: "img/p/ph-ink.jpg", desc: "Servi court, double dose de café.", parts: ["Café en grains", "Eau"] },
+        { name: "Latte", m: 2000, badge: "Doux", photo: "img/p/ph-cream.jpg", desc: "Expresso noyé de lait chaud, mousse fine sur le dessus.", parts: ["Expresso", "Lait chaud", "Mousse de lait"] },
+        { name: "Latte noisette, vanille ou menthe", m: 2000, badge: "3 parfums", photo: "img/p/ph-lime.jpg", desc: "Le latté avec le sirop de votre choix : noisette, vanille ou menthe. À préciser à la commande.", parts: ["Expresso", "Lait chaud", "Sirop au choix"] }
       ]
     },
     {
       key: "Pâtisseries",
       note: "Préparées à la commande, à prendre avec la boisson.",
       items: [
-        { name: "Gaufres simple", m: 1200, badge: "Chaud", photo: "img/placeholder.svg", desc: "Gaufre cuite au moment, croustillante dehors et moelleuse dedans.", parts: ["Pâte à gaufre maison", "Beurre", "Sucre"] }
+        { name: "Gaufre simple", m: 1200, badge: "Chaud", photo: "img/p/ph-cream.jpg", desc: "Gaufre cuite au moment, croustillante dehors et moelleuse dedans.", parts: ["Pâte à gaufre maison", "Beurre", "Sucre"] }
       ]
     },
     {
       key: "Fast-food",
       note: "Le salé du midi et du soir, monté à la commande.",
       items: [
-        { name: "Chawama viande", m: 2000, badge: "Sauce maison", photo: "img/placeholder.svg", desc: "Viande grillée roulée serré dans le pain, avec la sauce spéciale maison.", parts: ["Pain libanais", "Viande grillée", "Crudités", "Sauce spéciale maison"] },
-        { name: "Super chawarma", m: 2500, badge: "Généreux", photo: "img/placeholder.svg", desc: "Le chawarma version double : viande, œufs et sauce maison.", parts: ["Pain libanais", "Viande grillée", "Œufs", "Crudités", "Sauce maison"] },
-        { name: "Hamburger royal", m: 2000, badge: "Complet", photo: "img/placeholder.svg", desc: "Viande, frites, tomate et oignon dans un pain brioché.", parts: ["Pain brioché", "Viande", "Frites", "Tomate", "Oignon"] },
-        { name: "Super hamburger", m: 3500, badge: "Le plus grand", photo: "img/p/frites.jpg", desc: "Viande, œufs et une portion de frites incluse. Pour les grosses faims.", parts: ["Pain brioché", "Viande", "Œufs", "Portion de frites"] }
+        { name: "Chawarma viande", m: 2000, badge: "Sauce maison", photo: "img/p/fastfood.jpg", desc: "Viande grillée roulée serré dans le pain, avec la sauce spéciale maison.", parts: ["Pain libanais", "Viande grillée", "Crudités", "Sauce spéciale maison"] },
+        { name: "Super chawarma", m: 2500, badge: "Généreux", photo: "img/p/ph-ink.jpg", desc: "Le chawarma version double : viande, œufs et sauce maison.", parts: ["Pain libanais", "Viande grillée", "Œufs", "Crudités", "Sauce maison"] },
+        { name: "Hamburger royal", m: 2000, badge: "Complet", photo: "img/p/ph-lime.jpg", desc: "Viande, frites, tomate et oignon dans un pain brioché.", parts: ["Pain brioché", "Viande", "Frites", "Tomate", "Oignon"] },
+        { name: "Super hamburger", m: 3500, badge: "Le plus grand", photo: "img/p/frites-portion.jpg", desc: "Viande, œufs et une portion de frites incluse. Pour les grosses faims.", parts: ["Pain brioché", "Viande", "Œufs", "Portion de frites"] }
       ]
     }
   ];
@@ -99,6 +99,8 @@
     detailOverlay: el("detail-overlay"),
     detailBackdrop: el("detail-backdrop"),
     detailPhoto: el("detail-photo"),
+    detailBadge: el("detail-badge"),
+    detailPriceFrom: el("detail-price-from"),
     detailCat: el("detail-cat"),
     detailName: el("detail-name"),
     detailClose: el("detail-close"),
@@ -181,7 +183,7 @@
             '<span class="item-price">' + priceLabel(item) + '</span>' +
           '</div>' +
           '<p class="item-desc">' + escapeHtml(item.desc) + '</p>' +
-          '<span class="item-cta">Voir la photo et composer →</span>' +
+          '<span class="item-cta">Composer et commander →</span>' +
         '</div>';
       card.addEventListener("click", () => openItem(item, active.key));
       els.menuGrid.appendChild(card);
@@ -194,6 +196,10 @@
     return d.innerHTML;
   }
 
+  function lockScroll(on) {
+    document.body.style.overflow = on ? "hidden" : "";
+  }
+
   function openItem(item, catKey) {
     state.detail = item;
     state.detailCatKey = catKey;
@@ -201,11 +207,13 @@
     state.extras = [];
     renderDetail();
     els.detailOverlay.hidden = false;
+    lockScroll(true);
   }
 
   function closeDetail() {
     els.detailOverlay.hidden = true;
     state.detail = null;
+    if (els.cartOverlay.hidden) lockScroll(false);
   }
 
   function renderDetail() {
@@ -213,6 +221,8 @@
     if (!d) return;
     els.detailPhoto.src = d.photo;
     els.detailPhoto.alt = d.name;
+    els.detailBadge.textContent = d.badge;
+    els.detailPriceFrom.textContent = "dès " + F(d.m);
     els.detailCat.textContent = state.detailCatKey;
     els.detailName.textContent = d.name;
     els.detailDesc.textContent = d.desc;
@@ -247,7 +257,7 @@
       btn.type = "button";
       const active = state.extras.includes(e.name);
       btn.className = "extra-btn" + (active ? " is-active" : "");
-      btn.textContent = "+ " + e.name + " (" + e.price.toLocaleString("fr-FR") + " F)";
+      btn.textContent = (active ? "✓ " : "+ ") + e.name + " · " + e.price.toLocaleString("fr-FR") + " F";
       btn.addEventListener("click", () => {
         state.extras = active ? state.extras.filter(n => n !== e.name) : [...state.extras, e.name];
         renderDetail();
@@ -282,10 +292,12 @@
   function openCart() {
     els.cartOverlay.hidden = false;
     state.cartOpen = true;
+    lockScroll(true);
   }
   function closeCart() {
     els.cartOverlay.hidden = true;
     state.cartOpen = false;
+    if (els.detailOverlay.hidden) lockScroll(false);
   }
 
   function setMode(mode) {
