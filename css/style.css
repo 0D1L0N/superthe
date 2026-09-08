@@ -407,14 +407,25 @@ button { font: inherit; color: inherit; }
   z-index: -1;
 }
 
+/* Deux colonnes, deux rangees : le texte occupe la colonne de gauche en
+   deux temps, les photos tiennent toute la hauteur a droite. Le rendu est
+   celui d'un simple deux-colonnes, mais l'ordre du document permet a
+   l'image de se glisser entre titre et texte une fois empile. */
 .hero-inner {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 56px;
-  align-items: center;
+  grid-template-areas:
+    "titre photos"
+    "texte photos";
+  column-gap: 56px;
+  row-gap: 0;
+  align-content: center;
   padding-top: 84px;
   padding-bottom: 96px;
 }
+.hero-copy   { grid-area: titre; align-self: end; }
+.hero-photos { grid-area: photos; align-self: center; }
+.hero-detail { grid-area: texte; align-self: start; }
 
 .pill {
   display: inline-flex;
@@ -1628,15 +1639,19 @@ button { font: inherit; color: inherit; }
    -------------------------------------------------------------------------- */
 
 @media (max-width: 1040px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 48px; padding-top: 64px; padding-bottom: 72px; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    grid-template-areas: "titre" "photos" "texte";
+    row-gap: 32px;
+    padding-top: 64px;
+    padding-bottom: 72px;
+  }
+  .hero-copy, .hero-photos, .hero-detail { align-self: auto; }
   .hero-photos { min-height: 420px; }
   .order-inner,
   .story-inner,
   .drop-head,
   .contact-inner { grid-template-columns: 1fr; gap: 44px; }
-  /* Empilees, les photos passent devant le texte : c'est l'image qui
-     doit accueillir, pas un paragraphe. */
-  .hero-photos { order: -1; }
   .story-photos { max-width: 560px; }
 
   /* Le menu déroulant démarre dès la tablette : au-delà de sept liens,
@@ -1755,7 +1770,7 @@ button { font: inherit; color: inherit; }
 
   .hero-inner { padding-top: 48px; padding-bottom: 48px; gap: 30px; }
   .hero-title { margin-top: 18px; }
-  .hero-desc { margin-top: 16px; font-size: 1rem; line-height: 1.55; }
+  .hero-desc { margin-top: 0; font-size: 1rem; line-height: 1.55; }
   .hero-actions { margin-top: 24px; }
   .hero-stats { margin-top: 26px; }
 
