@@ -1634,6 +1634,9 @@ button { font: inherit; color: inherit; }
   .story-inner,
   .drop-head,
   .contact-inner { grid-template-columns: 1fr; gap: 44px; }
+  /* Empilees, les photos passent devant le texte : c'est l'image qui
+     doit accueillir, pas un paragraphe. */
+  .hero-photos { order: -1; }
   .story-photos { max-width: 560px; }
 
   /* Le menu déroulant démarre dès la tablette : au-delà de sept liens,
