@@ -51,8 +51,8 @@
   --glow: 0 0 0 1px rgba(158, 232, 23, 0.45), 0 12px 44px rgba(158, 232, 23, 0.28);
 
   /* Typo */
-  --display: "Bricolage Grotesque", "Baloo 2", system-ui, sans-serif;
-  --body: "Inter", system-ui, -apple-system, sans-serif;
+  --display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --body: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -104,8 +104,8 @@ button { font: inherit; color: inherit; }
 .h1, .h2, .h3 {
   font-family: var(--display);
   font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.0;
+  letter-spacing: -0.028em;
+  line-height: 1.02;
   margin: 0;
   text-wrap: balance;
 }
@@ -455,9 +455,9 @@ button { font: inherit; color: inherit; }
 .hero-title {
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(3rem, 7.2vw, 5.75rem);
-  line-height: 0.93;
-  letter-spacing: -0.045em;
+  font-size: clamp(2.9rem, 7vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
   margin: 26px 0 0;
   text-wrap: balance;
 }
