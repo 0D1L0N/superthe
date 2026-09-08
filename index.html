@@ -8,7 +8,14 @@
 <meta name="theme-color" content="#060a04">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Chargement non bloquant : le texte s'affiche tout de suite dans la
+     police de secours, puis bascule quand celle de la marque arrive. -->
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;600;700&display=swap">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;600;700&display=swap">
+</noscript>
+<link rel="preload" as="image" href="img/hero-1.jpg" fetchpriority="high">
 <link rel="icon" href="img/mark.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -17,7 +24,7 @@
 <header class="site-header" id="site-header">
   <div class="wrap header-inner">
     <a href="#top" class="brand">
-      <img src="img/mark.png" alt="" class="brand-logo" />
+      <img src="img/mark.png" width="136" height="200" alt="" class="brand-logo" />
       <span class="brand-text">
         <span class="brand-name">Super Thé<svg class="leaf" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M14.2 1.6C6.4 1.6 2.4 5.4 2.4 10.2c0 1.6.5 2.9.5 2.9S6 8.6 12.8 5.7c0 0-4.9 3.4-7.2 8.2 0 0 8.6.6 8.6-12.3Z"/></svg></span>
         <span class="brand-tag">La saveur unique</span>
@@ -70,8 +77,8 @@
       </div>
     </div>
     <div class="hero-photos">
-      <img src="img/hero-1.jpg" alt="Cliente tenant un thé au lait aux perles Super Thé" class="hero-photo hero-photo-1" />
-      <img src="img/hero-2.jpg" alt="Cliente tenant un thé vert au lait à la menthe" class="hero-photo hero-photo-2" />
+      <img src="img/hero-1.jpg" width="640" height="800" fetchpriority="high" alt="Cliente tenant un thé au lait aux perles Super Thé" class="hero-photo hero-photo-1" />
+      <img src="img/hero-2.jpg" width="601" height="800" alt="Cliente tenant un thé vert au lait à la menthe" class="hero-photo hero-photo-2" />
       <span class="hero-tag hero-tag--1">Perles cuites sur place</span>
       <span class="hero-tag hero-tag--2">Sucre ajustable</span>
     </div>
@@ -89,7 +96,7 @@
       </div>
       <div class="drop-grid">
         <button type="button" class="drop-card reveal" data-delay="1" data-item="Glace pilée simple">
-          <img src="img/p/glace-simple-tall.jpg" alt="Glace pilée simple au caramel" loading="lazy" />
+          <img src="img/p/glace-simple-tall.jpg" width="750" height="1000" alt="Glace pilée simple au caramel" loading="lazy" />
           <span class="drop-card-foot">
             <span class="drop-card-text">
               <span class="drop-card-name">Simple</span>
@@ -99,7 +106,7 @@
           </span>
         </button>
         <button type="button" class="drop-card reveal" data-delay="2" data-item="Glace pilée à la menthe">
-          <img src="img/p/glace-menthe-tall.jpg" alt="Glace pilée à la menthe" loading="lazy" />
+          <img src="img/p/glace-menthe-tall.jpg" width="750" height="1000" alt="Glace pilée à la menthe" loading="lazy" />
           <span class="drop-card-foot">
             <span class="drop-card-text">
               <span class="drop-card-name">Menthe</span>
@@ -109,7 +116,7 @@
           </span>
         </button>
         <button type="button" class="drop-card reveal" data-delay="3" data-item="Glace pilée au chocolat">
-          <img src="img/p/glace-chocolat-tall.jpg" alt="Glace pilée au chocolat" loading="lazy" />
+          <img src="img/p/glace-chocolat-tall.jpg" width="750" height="1000" alt="Glace pilée au chocolat" loading="lazy" />
           <span class="drop-card-foot">
             <span class="drop-card-text">
               <span class="drop-card-name">Chocolat</span>
@@ -187,10 +194,10 @@
       <p class="story-text">Depuis, la carte a grossi : thés verts aux fruits, smoothies, café, le salé du midi, et maintenant les glaces pilées. Trois salons ouverts, un quatrième bientôt à Porto-Novo. Rien n'attend sous une vitrine, tout se monte devant vous.</p>
     </div>
     <div class="story-photos reveal" data-delay="1">
-      <img src="img/boutique.jpg" alt="Le comptoir Super Thé" class="story-photo" loading="lazy" />
-      <img src="img/glace-perles.jpg" alt="Thé au lait aux perles servi sur glace" class="story-photo" loading="lazy" />
-      <img src="img/quote-perles.jpg" alt="Gros plan sur les perles de tapioca dans le thé" class="story-photo" loading="lazy" />
-      <img src="img/p/lait-melanges.jpg" alt="Thé au lait avec perles, jelly et flan" class="story-photo" loading="lazy" />
+      <img src="img/boutique.jpg" width="476" height="476" alt="Le comptoir Super Thé" class="story-photo" loading="lazy" />
+      <img src="img/glace-perles.jpg" width="476" height="476" alt="Thé au lait aux perles servi sur glace" class="story-photo" loading="lazy" />
+      <img src="img/quote-perles.jpg" width="700" height="700" alt="Gros plan sur les perles de tapioca dans le thé" class="story-photo" loading="lazy" />
+      <img src="img/p/lait-melanges.jpg" width="900" height="675" alt="Thé au lait avec perles, jelly et flan" class="story-photo" loading="lazy" />
     </div>
   </div>
 </section>
@@ -205,14 +212,14 @@
       <p class="lead">Des photos prises en boutique, pas en studio. C'est exactement ce que vous recevez.</p>
     </div>
     <div class="gallery-grid reveal">
-      <figure><img src="img/g-glace-1.jpg" alt="Cliente avec une glace pilée au chocolat" loading="lazy" /></figure>
-      <figure><img src="img/p/lait-menthe.jpg" alt="Thé vert au lait à la menthe" loading="lazy" /></figure>
-      <figure><img src="img/g-portrait-2.jpg" alt="Cliente avec un thé vert au lait" loading="lazy" /></figure>
-      <figure><img src="img/p/smoothie-mangue.jpg" alt="Smoothie à la mangue" loading="lazy" /></figure>
-      <figure><img src="img/g-glace-2.jpg" alt="Cliente avec une glace pilée à la menthe" loading="lazy" /></figure>
-      <figure><img src="img/p/frites-portion.jpg" alt="Portion de frites Super Thé" loading="lazy" /></figure>
-      <figure><img src="img/g-portrait.jpg" alt="Cliente avec un thé au lait aux mélanges" loading="lazy" /></figure>
-      <figure><img src="img/p/vert-cocktail-3.jpg" alt="Thés verts aux fruits alignés sur le comptoir" loading="lazy" /></figure>
+      <figure><img src="img/g-glace-1.jpg" width="700" height="700" alt="Cliente avec une glace pilée au chocolat" loading="lazy" /></figure>
+      <figure><img src="img/p/lait-menthe.jpg" width="476" height="357" alt="Thé vert au lait à la menthe" loading="lazy" /></figure>
+      <figure><img src="img/g-portrait-2.jpg" width="700" height="700" alt="Cliente avec un thé vert au lait" loading="lazy" /></figure>
+      <figure><img src="img/p/smoothie-mangue.jpg" width="552" height="415" alt="Smoothie à la mangue" loading="lazy" /></figure>
+      <figure><img src="img/g-glace-2.jpg" width="700" height="700" alt="Cliente avec une glace pilée à la menthe" loading="lazy" /></figure>
+      <figure><img src="img/p/frites-portion.jpg" width="756" height="567" alt="Portion de frites Super Thé" loading="lazy" /></figure>
+      <figure><img src="img/g-portrait.jpg" width="700" height="700" alt="Cliente avec un thé au lait aux mélanges" loading="lazy" /></figure>
+      <figure><img src="img/p/vert-cocktail-3.jpg" width="900" height="675" alt="Thés verts aux fruits alignés sur le comptoir" loading="lazy" /></figure>
     </div>
   </div>
 </section>
@@ -263,7 +270,7 @@
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="img/mark-white.png" alt="" class="footer-logo" />
+        <img src="img/mark-white.png" width="136" height="200" alt="" class="footer-logo" />
         <div>
           <div class="footer-title">Super Thé<svg class="leaf" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M14.2 1.6C6.4 1.6 2.4 5.4 2.4 10.2c0 1.6.5 2.9.5 2.9S6 8.6 12.8 5.7c0 0-4.9 3.4-7.2 8.2 0 0 8.6.6 8.6-12.3Z"/></svg></div>
           <p class="footer-tagline">La saveur unique</p>

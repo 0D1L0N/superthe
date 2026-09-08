@@ -222,7 +222,7 @@
       card.setAttribute("data-delay", String(i % 4));
       card.innerHTML =
         '<span class="item-media">' +
-          '<img class="item-photo" src="' + item.photo + '" alt="" loading="lazy" />' +
+          '<img class="item-photo" src="' + item.photo + '" alt="" loading="lazy" width="900" height="675" />' +
           '<span class="item-badge' + (item.badge === "Nouveau" ? " item-badge--new" : "") + '">' +
             escapeHtml(item.badge) + "</span>" +
           '<span class="item-price">' + priceLabel(item) + "</span>" +
